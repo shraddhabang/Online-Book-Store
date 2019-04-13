@@ -52,9 +52,9 @@
                 
                 <ul class="header-nav__list">
                     <li class="current"><a class="smoothscroll"  href="#home" title="home">Home</a></li>
-                    <li><a class="smoothscroll"  href="#about" title="about">About</a></li>
-                    <li><a class="smoothscroll"  href="#services" title="services">Services</a></li>
-                    <li><a class="smoothscroll"  href="#works" title="works">Works</a></li>
+                    <li><a class="smoothscroll"  href="#categories" title="about">Categories</a></li>
+                    <li><a class="smoothscroll"  href="#services" title="services">Publishers</a></li>
+                    <li><a class="smoothscroll"  href="#works" title="works">Books</a></li>
                     <li><a class="smoothscroll"  href="#contact" title="contact">Contact</a></li>
 
                 </ul>
@@ -92,7 +92,7 @@
 
     <!-- home
     ================================================== -->
-    <section id="home" class="s-home target-section" data-parallax="scroll" data-image-src="./bootstrap/./bootstrap/images/hero-bg.jpg" data-natural-width=3000 data-natural-height=2000 data-position-y=top>
+    <section id="home" class="s-home target-section" data-parallax="scroll" data-image-src="./bootstrap/images/hero-bg.jpg" data-natural-width=3000 data-natural-height=2000 data-position-y=top>
 
         <div class="shadow-overlay"></div>
 
@@ -141,25 +141,16 @@
 
     </section> <!-- end s-home -->
 
-
-    <!-- about
-    ================================================== -->
-    <section id='about' class="s-about">
+    <!-- Categories -->
+		<section id='categories' class="s-about">
 
         <div class="row section-header" data-aos="fade-up">
             <div class="col-full">
-                <h3 class="subhead">Who We Are</h3>
-                <h1 class="display-1">We are a group of design driven individuals passionate about creating beautiful UI designs.</h1>
+                <h1 class="display-1">Categories</h1>
+                <h3 class="subhead">View books by selecting a category!</h3>
+                
             </div>
         </div> <!-- end section-header -->
-
-        <div class="row" data-aos="fade-up">
-            <div class="col-full">
-                <p class="lead">
-                Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse. 
-                </p>
-            </div>
-        </div> <!-- end about-desc -->
 
         <div class="row">
                 
@@ -170,50 +161,42 @@
 
                 <div class="col-block process__col" data-item="1" data-aos="fade-up">
                     <div class="process__text">
-                        <h4>Define</h4>
-
-                        <p>
-                        Quos dolores saepe mollitia deserunt accusamus autem reprehenderit. Voluptas facere animi explicabo non quis magni recusandae. 
-                        Numquam debitis pariatur omnis facere unde. Laboriosam minus amet nesciunt est. Et saepe eos maxime tempore quasi deserunt ab.
-                        </p>
+                      <a href="bestsellers.php">
+                        <img class="rotate" src="./bootstrap/images/icons/book.svg" alt="Generic placeholder image" height="100px" width="100px">
+                      </a>
+                      <h3>Bestsellers</h3>
                     </div>
                 </div>
                 <div class="col-block process__col" data-item="2" data-aos="fade-up">
                     <div class="process__text">
-                        <h4>Design</h4>
-
-                        <p>
-                        Quos dolores saepe mollitia deserunt accusamus autem reprehenderit. Voluptas facere animi explicabo non quis magni recusandae. 
-                        Numquam debitis pariatur omnis facere unde. Laboriosam minus amet nesciunt est. Et saepe eos maxime tempore quasi deserunt ab.
-                        </p>
+                      <a href="academic.php">
+                        <img  class="rotate" src="./bootstrap/images/icons/laptop.svg" alt="Generic placeholder image" height="100px" width="100px">
+                      </a>
+                      <h3>Academic &amp; Professional</h3>
                     </div>
                 </div>
                 <div class="col-block process__col" data-item="3" data-aos="fade-up">
                     <div class="process__text">
-                        <h4>Build</h4>
-
-                        <p>
-                        Quos dolores saepe mollitia deserunt accusamus autem reprehenderit. Voluptas facere animi explicabo non quis magni recusandae. 
-                        Numquam debitis pariatur omnis facere unde. Laboriosam minus amet nesciunt est. Et saepe eos maxime tempore quasi deserunt ab.
-                        </p>
+                        <a href="literature.php">
+                          <img  class="rotate" src="./bootstrap/images/icons/letter.svg" alt="Generic placeholder image" height="100px" width="100px">
+                        </a>
+                        <h3>Literature &amp; Fiction</h3>
                     </div>
                 </div>
                 <div class="col-block process__col" data-item="4" data-aos="fade-up">
                     <div class="process__text">
-                        <h4>Launch</h4>
-
-                        <p>
-                        Quos dolores saepe mollitia deserunt accusamus autem reprehenderit. Voluptas facere animi explicabo non quis magni recusandae. 
-                        Numquam debitis pariatur omnis facere unde. Laboriosam minus amet nesciunt est. Et saepe eos maxime tempore quasi deserunt ab.
-                        </p>
+                        <a href="literature.php">
+                          <img  class="rotate" src="./bootstrap/images/icons/letter.svg" alt="Generic placeholder image" height="100px" width="100px">
+                        </a>
+                        <h3>Literature &amp; Fiction</h3>
                     </div>
                 </div>
 
             </div> <!-- end process -->
 
-        </div> <!-- end about-stats -->
+        </div> <!-- end categories-stats -->
 
-    </section> <!-- end s-about -->
+    </section> <!-- end s-categories -->
 
 
     <!-- services
