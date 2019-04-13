@@ -201,104 +201,100 @@
 
     <!-- services
     ================================================== -->
+
+    <?php
+        require_once "./functions/database_functions.php";
+        $conn = db_connect();
+
+        $query = "SELECT * FROM publisher ORDER BY publisherid";
+        $result = mysqli_query($conn, $query);
+        if(!$result){
+    ?>
+        <div class="row section-header" data-aos="fade-up">
+          <div class="col-full">
+              <h1 class="display-1">List Of Publishers</h1>
+              <h3 class="subhead">View books by selecting publishers</h3>
+          </div>
+        </div> <!-- end section-header -->
+    <?php
+          exit;
+        }
+        if(mysqli_num_rows($result) == 0){
+          echo "Empty publisher ! Something wrong! check again";
+          exit;
+        }
+    ?>
     <section id='services' class="s-services light-gray">
+        <?php
+            require_once "./functions/database_functions.php";
+            $conn = db_connect();
+
+            $query = "SELECT * FROM publisher ORDER BY publisherid";
+            $result = mysqli_query($conn, $query);
+            if(!$result){
+        ?>
+            <div class="row section-header" data-aos="fade-up">
+              <div class="col-full">
+                  <h1 class="display-1">Something went wrong. Cant connect to DB</h1>
+              </div>
+            </div> <!-- end section-header -->
+        <?php
+              exit;
+            }
+            if(mysqli_num_rows($result) == 0){
+        ?>
+            <div class="row section-header" data-aos="fade-up">
+              <div class="col-full">
+                  <h1 class="display-1">Empty publisher ! Something wrong! check again</h1>
+              </div>
+            </div> <!-- end section-header -->
+        <?php
+              exit;
+            }
+        ?>
 
         <div class="row section-header" data-aos="fade-up">
             <div class="col-full">
-                <h3 class="subhead">What We Do</h3>
-                <h1 class="display-1">We have everything you need to launch and grow a successful digital business.</h1>
+                <h1 class="display-1">List Of Publishers</h1>
+                <h3 class="subhead">View books by selecting publishers</h3>
             </div>
         </div> <!-- end section-header -->
-
-        <div class="row" data-aos="fade-up">
-            <div class="col-full">
-                <p class="lead">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse. 
-                </p>
-            </div>
-        </div> <!-- end about-desc -->
-
-        <div class="row services-list block-1-3 block-m-1-2 block-tab-full">
-
-            <div class="col-block service-item " data-aos="fade-up">
-                <div class="service-icon service-icon--brand-identity">
-                    <i class="icon-tv"></i>
-                </div>
-                <div class="service-text">
-                    <h3 class="h4">Brand Identity</h3>
-                    <p>Nemo cupiditate ab quibusdam quaerat impedit magni. Earum suscipit ipsum laudantium. 
-                    Quo delectus est. Maiores voluptas ab sit natus veritatis ut. Debitis nulla cumque veritatis.
-                    Sunt suscipit voluptas ipsa in tempora esse soluta sint.
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-block service-item" data-aos="fade-up">
-                <div class="service-icon  service-icon--illustration">
-                    <i class="icon-group"></i>
-                </div>
-                <div class="service-text">
-                    <h3 class="h4">Illustration</h3>
-                    <p>Nemo cupiditate ab quibusdam quaerat impedit magni. Earum suscipit ipsum laudantium. 
-                    Quo delectus est. Maiores voluptas ab sit natus veritatis ut. Debitis nulla cumque veritatis.
-                    Sunt suscipit voluptas ipsa in tempora esse soluta sint.
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-block service-item" data-aos="fade-up">
-                <div class="service-icon  service-icon--web-design">
-                    <i class="icon-earth"></i>
-                </div>  
-                <div class="service-text">
-                    <h3 class="h4">Web Design</h3>
-                    <p>Nemo cupiditate ab quibusdam quaerat impedit magni. Earum suscipit ipsum laudantium. 
-                    Quo delectus est. Maiores voluptas ab sit natus veritatis ut. Debitis nulla cumque veritatis.
-                    Sunt suscipit voluptas ipsa in tempora esse soluta sint.
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-block service-item" data-aos="fade-up">
-                <div class="service-icon service-icon--product-strategy">
-                    <i class="icon-cube"></i>
-                </div>
-                <div class="service-text">
-                    <h3 class="h4">Product Strategy</h3>
-                    <p>Nemo cupiditate ab quibusdam quaerat impedit magni. Earum suscipit ipsum laudantium. 
-                    Quo delectus est. Maiores voluptas ab sit natus veritatis ut. Debitis nulla cumque veritatis.
-                    Sunt suscipit voluptas ipsa in tempora esse soluta sint.
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-block service-item" data-aos="fade-up">
-                <div class="service-icon  service-icon--ui-design">
-                    <i class="icon-window"></i>
-                </div>
-                <div class="service-text">
-                    <h3 class="h4">UI/UX Design</h3>
-                    <p>Nemo cupiditate ab quibusdam quaerat impedit magni. Earum suscipit ipsum laudantium. 
-                    Quo delectus est. Maiores voluptas ab sit natus veritatis ut. Debitis nulla cumque veritatis.
-                    Sunt suscipit voluptas ipsa in tempora esse soluta sint.
-                    </p>
-                </div>
-            </div>
     
-            <div class="col-block service-item" data-aos="fade-up">
-                <div class="service-icon service-icon--mobile-dev">
-                    <i class="icon-lego-block"></i>
-                </div>
-                <div class="service-text">
-                    <h3 class="h4">Mobile Development</h3>
-                    <p>Nemo cupiditate ab quibusdam quaerat impedit magni. Earum suscipit ipsum laudantium. 
-                    Quo delectus est. Maiores voluptas ab sit natus veritatis ut. Debitis nulla cumque veritatis.
-                    Sunt suscipit voluptas ipsa in tempora esse soluta sint.
-                    </p>
-                </div>
+        <div class="row services-list block-1-3 block-m-1-2 block-tab-full">
+          <?php 
+            while($row = mysqli_fetch_assoc($result)){
+            $count = 0; 
+            $query = "SELECT publisherid FROM books";
+            $result2 = mysqli_query($conn, $query);
+            if(!$result2){
+          ?>
+            <div class="row section-header" data-aos="fade-up">
+              <div class="col-full">
+                  <h1 class="display-1">Something went wrong. Cant connect to DB</h1>
+              </div>
+            </div> <!-- end section-header -->
+          <?php
+                exit;
+            }
+            while ($pubInBook = mysqli_fetch_assoc($result2)){
+              if($pubInBook['publisherid'] == $row['publisherid']){
+                $count++;
+              }
+            }
+        ?>
+          <a href="bookPerPub.php?pubid=<?php echo $row['publisherid']; ?>">
+            <div class="col-block service-item " data-aos="fade-up">
+                  <div class="service-text">
+                      <h3 class="h4"><?php echo $row['publisher_name']; ?></h3>
+                      <p>Books Available: <?php echo $count; ?>
+                      </p>
+                  </div>
             </div>
-
-        </div> <!-- end services-list -->
+          </a>
+          
+        <?php } 
+        ?>
+      </div> <!-- end services-list -->
 
     </section> <!-- end s-services -->
 
