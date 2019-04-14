@@ -7,7 +7,7 @@ $title = "Index";
 require_once "./template/header.php";
 require_once "./functions/database_functions.php";
 $conn = db_connect();
-$row = select4LatestBook($conn);
+$row = select6LatestBooks($conn);
 ?>
     <!-- Example row of columns -->
 <!--    <p class="lead text-center text-muted">Latest books</p>-->
