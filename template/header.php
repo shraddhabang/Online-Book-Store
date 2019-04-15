@@ -52,6 +52,7 @@
                 
                 <ul class="header-nav__list">
                     <li class="current"><a class="smoothscroll"  href="#home" title="home">Home</a></li>
+                    <li><a class="smoothscroll"  href="#latestBooks" title="about">Latest Books</a></li>
                     <li><a class="smoothscroll"  href="#categories" title="about">Categories</a></li>
                     <li><a class="smoothscroll"  href="#services" title="services">Publishers</a></li>
                     <li><a class="smoothscroll"  href="#works" title="works">Books</a></li>
@@ -318,15 +319,14 @@
             <div class="masonry">
                 <?php
                 foreach($row as $book) { ?>
-
                     <div class="masonry__brick" data-aos="fade-up">
                         <div class="item-folio">
-
                             <div class="item-folio__thumb">
-                                <a href="book.php?bookisbn=<?php echo $book['book_isbn']; ?>" class="thumb-link" data-size="1050x700">
-                                    <img src="./bootstrap/images/<?php echo $book['book_image']; ?>" alt="">
-<!--                                         srcset="./bootstrap/images/portfolio/lamp.jpg 1x, ./bootstrap/images/portfolio/lamp@2x.jpg 2x"-->
 
+
+                                <a href="./bootstrap/images/<?php echo $book['book_image']; ?>" class="thumb-link" title="Lamp" data-size="1050x700">
+                                    <img src="./bootstrap/images/<?php echo $book['book_image']; ?>"
+                                         srcset="./bootstrap/images/<?php echo $book['book_image']; ?> 1x, ./bootstrap/images/<?php echo $book['book_image']; ?> 2x" alt="">
                                 </a>
                             </div>
 
@@ -349,10 +349,8 @@
 
                         </div> <!-- end item-folio -->
                     </div> <!-- end masonry__brick -->
-
-                                    <?php } ?>
+                <?php } ?>
             </div>
-
         </div>
 
         <div class="testimonials-wrap" data-aos="fade-up">
