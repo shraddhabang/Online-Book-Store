@@ -15,7 +15,7 @@
   $title = "Full Catalogs of Books";
   require_once "./template/menu.html";
 ?>
-  <p class="lead text-center text-muted" style="margin-top: 150px;margin-left: 100px"">Full Catalogs of Books</p>
+  <p class="lead text-center text-muted">Full Catalogs of Books</p>
     <?php for($i = 0; $i < mysqli_num_rows($result); $i++){ ?>
       <div class="row">
         <?php while($query_row = mysqli_fetch_assoc($result)){ ?>

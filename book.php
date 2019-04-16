@@ -22,7 +22,7 @@
   require "./template/menu.html";
 ?>
     <section>
-      <p class="lead" style="margin-top: 150px;margin-left: 100px"><a href="books.php">Books</a> > <?php echo $row['book_title']; ?></p>
+      <p class="lead"><a href="books.php">Books</a> > <?php echo $row['book_title']; ?></p>
       <div class="row">
           <div class="col-md-3 text-center">
           <img class="img-responsive img-thumbnail" src="bootstrap/images/<?php echo $row['book_image']; ?>">
