@@ -5,9 +5,9 @@ $count = 0;
 
 $title = "Index";
 require_once "./template/header.php";
-require_once "./functions/database_functions.php";
-$conn = db_connect();
-$row = select6LatestBooks($conn);
+//require_once "./functions/database_functions.php";
+//$conn = db_connect();
+//$row = select6LatestBooks($conn);
 ?>
     <!-- Example row of columns -->
 <!--    <p class="lead text-center text-muted">Latest books</p>-->

@@ -19,15 +19,15 @@
   }
 
   $title = $row['book_title'];
-  require "./template/header.php";
+  require "./template/menu.html";
 ?>
-      <!-- Example row of columns -->
-      <p class="lead" style="margin: 25px 0"><a href="books.php">Books</a> > <?php echo $row['book_title']; ?></p>
+    <section>
+      <p class="lead" style="margin-top: 150px;margin-left: 100px"><a href="books.php">Books</a> > <?php echo $row['book_title']; ?></p>
       <div class="row">
-        <div class="col-md-3 text-center">
-          <img class="img-responsive img-thumbnail" src="./bootstrap/img/<?php echo $row['book_image']; ?>">
+          <div class="col-md-3 text-center">
+          <img class="img-responsive img-thumbnail" src="bootstrap/images/<?php echo $row['book_image']; ?>">
         </div>
-        <div class="col-md-6">
+          <div class="col-md-6">
           <h4>Book Description</h4>
           <p><?php echo $row['book_descr']; ?></p>
           <h4>Book Details</h4>
@@ -55,8 +55,8 @@
               <td><?php echo $key; ?></td>
               <td><?php echo $value; ?></td>
             </tr>
-            <?php 
-              } 
+            <?php
+              }
               if(isset($conn)) {mysqli_close($conn); }
             ?>
           </table>
@@ -66,6 +66,7 @@
           </form>
        	</div>
       </div>
+</section>
 <?php
-  require "./template/footer.php";
-?>
+//  require "./template/footer.php";
+//?>

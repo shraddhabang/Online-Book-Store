@@ -320,22 +320,22 @@
                 <?php
                 foreach($row as $book) { ?>
                     <div class="masonry__brick" data-aos="fade-up">
-                        <div class="item-folio">
-                            <div class="item-folio__thumb">
+<!--                        <div class="item-folio">-->
+<!--                            <div class="item-folio__thumb">-->
 
 
-                                <a href="./bootstrap/images/<?php echo $book['book_image']; ?>" class="thumb-link" title="Lamp" data-size="1050x700">
+                                <a href="book.php?bookisbn=<?php echo $book['book_isbn']; ?>" class="thumb-link" title="Lamp" data-size="1050x700">
                                     <img src="./bootstrap/images/<?php echo $book['book_image']; ?>"
-                                         srcset="./bootstrap/images/<?php echo $book['book_image']; ?> 1x, ./bootstrap/images/<?php echo $book['book_image']; ?> 2x" alt="">
+                                         >
                                 </a>
-                            </div>
+<!--                            </div>-->
 
-                            <div class="item-folio__text">
+                            <!--<div class="item-folio__text">
                                 <h3 class="item-folio__title">
-                                    <?php echo $book['book_title']; ?>
+                                    <?php /*echo $book['book_title']; */?>
                                 </h3>
                                 <p class="item-folio__cat">
-                                    <?php echo $book['book_price']; ?>
+                                    <?php /*echo $book['book_price']; */?>
                                 </p>
                             </div>
 
@@ -345,9 +345,9 @@
 
                             <div class="item-folio__caption">
                                 <p>Vero molestiae sed aut natus excepturi. Et tempora numquam. Temporibus iusto quo.Unde dolorem corrupti neque nisi.</p>
-                            </div>
+                            </div>-->
 
-                        </div> <!-- end item-folio -->
+<!--                        </div> <!-- end item-folio -->
                     </div> <!-- end masonry__brick -->
                 <?php } ?>
             </div>
