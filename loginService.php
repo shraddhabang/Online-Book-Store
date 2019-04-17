@@ -14,8 +14,10 @@
         $password=htmlspecialchars($_POST['pass']);
         $errors = array(); //To store errors
         $response = array(); //Pass back the data to `form.php`
-
-        $conn = mysqli_connect("localhost:8889", "root", "root", "www_project");
+        
+        require_once "functions/database_functions.php";
+        $conn = db_connect();
+        //$conn = mysqli_connect("localhost:8889", "root", "root", "www_project");
         // $conn = db_connect();
         if(!$conn){
             $errors['name'] = "Error in connecting DB";   
