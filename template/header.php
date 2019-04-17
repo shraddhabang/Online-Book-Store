@@ -114,9 +114,21 @@
         </div> <!-- end home-content -->
 
         <ul class="home-sidelinks">
-            <li><a class="smoothscroll" href="#about">Login<span>Start your purchase</span></a></li>
-            <li><a class="smoothscroll" href="#services">Signup<span>Not registered ? Create an account</span></a></li>
-            <li><a  class="smoothscroll" href="#contact">Contact<span>Get in touch</span></a></li>
+            <?php
+                session_start();
+                if(!isset($_SESSION["id"])){
+            ?>
+                <li><a href="login.php">Login<span>Start your purchase</span></a></li>
+                <li><a href="signup.php">Signup<span>Not registered ? Create an account</span></a></li>
+                <li><a  href="#contact">Contact<span>Get in touch</span></a></li>
+        
+            <?php
+                }else{
+            ?>
+            <li><a href="logout.php">Logout<span>End your session</span></a></li>
+            <?php
+                }
+            ?>
         </ul> <!-- end home-sidelinks -->
 
         <ul class="home-social">

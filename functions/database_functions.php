@@ -1,6 +1,6 @@
 <?php
 	function db_connect(){
-		$conn = mysqli_connect("localhost", "root", "root", "bookstore");
+		$conn = mysqli_connect("localhost:8889", "root", "root", "www_project");
 		if(!$conn){
 			echo "Can't connect database " . mysqli_connect_error($conn);
 			exit;
@@ -10,7 +10,7 @@
 
 	function select6LatestBooks($conn){
 		$row = array();
-		$query = "SELECT book_isbn, book_image,book_title,book_price FROM books ORDER BY book_isbn DESC";
+		$query = "SELECT book_isbn,book_image,book_title,book_price FROM books ORDER BY book_isbn DESC";
 		$result = mysqli_query($conn, $query);
 		if(!$result){
 		    echo "Can't retrieve data " . mysqli_error($conn);
