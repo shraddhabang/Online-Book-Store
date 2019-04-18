@@ -17,8 +17,6 @@
         
         require_once "functions/database_functions.php";
         $conn = db_connect();
-        //$conn = mysqli_connect("localhost:8889", "root", "root", "www_project");
-        // $conn = db_connect();
         if(!$conn){
             $errors['name'] = "Error in connecting DB";   
             $response['errors']  = $errors;

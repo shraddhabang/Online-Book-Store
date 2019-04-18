@@ -1,4 +1,3 @@
-
 <html lang="en">
 <head>
 	<title>Login V2</title>
@@ -30,7 +29,10 @@
 <script src="bootstrap/js/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-	
+<?php
+require_once "./template/menu.html";
+
+?>
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">

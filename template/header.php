@@ -51,12 +51,11 @@
                 <h3>Transcend Studio</h3>
                 
                 <ul class="header-nav__list">
-                    <li class="current"><a class="smoothscroll"  href="#home" title="home">Home</a></li>
-                    <li><a class="smoothscroll"  href="#latestBooks" title="about">Latest Books</a></li>
-                    <li><a class="smoothscroll"  href="#categories" title="about">Categories</a></li>
-                    <li><a class="smoothscroll"  href="#services" title="services">Publishers</a></li>
-                    <li><a class="smoothscroll"  href="#works" title="works">Books</a></li>
-                    <li><a class="smoothscroll"  href="#contact" title="contact">Contact</a></li>
+                    <li class="current"><a href="./index.php" title="Home">Home</a></li>
+                    <li><a  href="./listofbooks.php" title="List of Books">Books</a></li>
+                    <li><a  href="./cart.php" title="Shopping Cart">My Cart</a></li>
+                    <li><a  href="./orders.php" title="Orders">My Orders</a></li>
+                    <li><a  href="./index.php#contact" title="Contact Us">Contact Us</a></li>
 
                 </ul>
     
@@ -115,7 +114,9 @@
 
         <ul class="home-sidelinks">
             <?php
+            if(!isset($_SESSION)) {
                 session_start();
+            }
                 if(!isset($_SESSION["id"])){
             ?>
                 <li><a href="login.php">Login<span>Start your purchase</span></a></li>
