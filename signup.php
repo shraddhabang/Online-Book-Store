@@ -26,19 +26,20 @@
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/loginutil.css">
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/login.css">
 <!--===============================================================================================-->
+
+<script src="bootstrap/js/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 	
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<form name="signupForm" id="signupForm" class="login100-form validate-form">
 					<span class="login100-form-title p-b-26">
 						Welcome
 					</span>
-					<!-- <span class="login100-form-title p-b-48">
-						<i class="zmdi zmdi-font"></i>
-					</span> -->
+                    <div id="throw_error" class="alert alert-danger" style="visibility:hidden">
+                    </div>
                     <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
 						<input class="input100" type="text" name="name">
 						<span class="focus-input100" data-placeholder="Name"></span>
@@ -78,11 +79,11 @@
 
 					<div class="text-center p-t-115">
 						<span class="txt1">
-							Don’t have an account?
+							Have an account?
 						</span>
 
-						<a class="txt2" href="#">
-							Sign Up
+						<a class="txt2" href="login.php">
+							Login
 						</a>
 					</div>
 				</form>
@@ -93,6 +94,40 @@
 
 	<div id="dropDownSelect1"></div>
 
-
+    <script>
+    $(document).ready(function(){
+	    $("#signupForm").submit(function(event){
+            $('#throw_error').empty(); //Clear the messages first
+            
+            console.log($('#signupForm').serialize());
+            $.ajax({
+            type: "POST",
+            url: "signupService.php",
+            data: $('#signupForm').serialize(),
+            datatype: 'json',
+            success   : function(response) {
+                            var data = JSON.parse(response);
+                            if (!data.success) { //If fails
+                                if (data.errors.name) { //Returned if any error from process.php
+                                    $('#throw_error').css("visibility","visible");
+                                    $('#throw_error').fadeIn(1000).html(data.errors.name); //Throw relevant error
+                                    $('#pass').val = "";
+                                }
+                            }
+                            else {
+                                    window.open("index.php","_self");
+                                } 
+                            // console.log(response);
+                            // alert(response);
+                            },
+            error : function(){
+                alert("Error");
+            }
+        });
+        event.preventDefault();
+    });
+    });
+       
+    </script>
 </body>
 </html>
