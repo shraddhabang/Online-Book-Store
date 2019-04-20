@@ -8,7 +8,9 @@
 		$book_isbn = $_POST['bookisbn'];
         echo $book_isbn;
     }
-$userId = $_SESSION['id'];
+    if(isset( $_SESSION['id'])){
+        $userId = $_SESSION['id'];
+    }
 if(!isset($_SESSION['cart']))	{
     $_SESSION['cart'] = array();
     $cart = loadCart($userId);
