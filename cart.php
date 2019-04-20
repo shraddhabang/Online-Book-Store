@@ -1,14 +1,4 @@
 <?php
-	// the shopping cart needs sessions, to start one
-	/*
-		Array of session(
-			cart => array (
-				book_isbn (get from $_POST['book_isbn']) => number of books
-			),
-			items => 0,
-			total_price => '0.00'
-		)
-	*/
 	session_start();
 	require_once "functions/database_functions.php";
 	require_once "functions/cart_functions.php";
@@ -16,18 +6,18 @@
 	// book_isbn got from form post method, change this place later.
 	if(isset($_POST['bookisbn'])){
 		$book_isbn = $_POST['bookisbn'];
-	}
+        echo $book_isbn;
+    }
+$userId = $_SESSION['id'];
+if(!isset($_SESSION['cart']))	{
+    $_SESSION['cart'] = array();
+    $cart = loadCart($userId);
+    foreach ($cart as $row) {
+        $_SESSION['cart'][$row["book_isbn_fk"]] = $row['quantity'];
+    }
+}
 
 	if(isset($book_isbn)){
-		// new iem selected
-		if(!isset($_SESSION['cart'])){
-			// $_SESSION['cart'] is associative array that bookisbn => qty
-			$_SESSION['cart'] = array();
-
-			$_SESSION['total_items'] = 0;
-			$_SESSION['total_price'] = '0.00';
-		}
-
 		if(!isset($_SESSION['cart'][$book_isbn])){
 			$_SESSION['cart'][$book_isbn] = 1;
 		} elseif(isset($_POST['cart'])){
@@ -38,11 +28,13 @@
 
 	// if save change button is clicked , change the qty of each bookisbn
 	if(isset($_POST['save_change'])){
-		foreach($_SESSION['cart'] as $isbn =>$qty){
-			if($_POST[$isbn] == '0'){
-				unset($_SESSION['cart']["$isbn"]);
+        foreach($_SESSION['cart'] as $isbn =>$qty){
+            if($_POST[$isbn] == '0'){
+			unset($_SESSION['cart']["$isbn"]);
+				deleteBookFromCart($isbn,$userId);
 			} else {
 				$_SESSION['cart']["$isbn"] = $_POST["$isbn"];
+                insertOrUpdateBookQuantityInCart($isbn,$_SESSION['cart'][$isbn],$userId);
 			}
 		}
 	}

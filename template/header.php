@@ -56,7 +56,7 @@
                     <li><a  href="./cart.php" title="Shopping Cart">My Cart</a></li>
                     <li><a  href="./orders.php" title="Orders">My Orders</a></li>
                     <li><a  href="./index.php#contact" title="Contact Us">Contact Us</a></li>
-
+                    <li><a href="./logout.php" title="Logout">Logout</a></li>
                 </ul>
     
                 <p>Perspiciatis hic praesentium nesciunt. Et neque a dolorum <a href='#0'>voluptatem</a> porro iusto sequi veritatis libero enim. Iusto id suscipit veritatis neque reprehenderit.</p>

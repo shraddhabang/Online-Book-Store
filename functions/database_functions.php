@@ -65,6 +65,14 @@
 		return $row['book_price'];
 	}
 
+	function loadCart($userId){
+        $conn = db_connect();
+        //$query = "SELECT `book_title`,`book_price` FROM books inner join cart ON books.book_isbn=cart.book_isbn_fk WHERE user_id_fk='$userId'";
+        $query = "SELECT book_isbn_fk,quantity from cart WHERE user_id_fk='$userId'";
+        $result = mysqli_query($conn, $query);
+        return $result;
+	}
+
 	function getCustomerId($name, $address, $city, $zip_code, $country){
 		$conn = db_connect();
 		$query = "SELECT customerid from customers WHERE 
@@ -122,4 +130,44 @@
 		}
 		return $result;
 	}
+
+	function deleteBookFromCart($isbn,$userId){
+        $conn = db_connect();
+        $query = "DELETE from cart where book_isbn_fk='$isbn' and user_id_fk='$userId'";
+        $result=mysqli_query($conn, $query);
+        if(!$result){
+            echo "Insert orders failed " . mysqli_error($conn);
+            exit;
+        }
+    }
+
+    function insertOrUpdateBookQuantityInCart($isbn, $quantity, $userId){
+        $conn = db_connect();
+        $query="SELECT quantity FROM CART WHERE book_isbn_fk='$isbn' and user_id_fk='$userId'";
+        $result=mysqli_query($conn, $query);
+        $qty = mysqli_fetch_assoc($result);
+        if(!$result){
+            echo "Insert orders failed " . mysqli_error($conn);
+            exit;
+        }
+        if($qty['quantity']==null){
+            echo "insert";
+            $query = "INSERT into cart (user_id_fk,book_isbn_fk,quantity) values('$userId','$isbn','$quantity') ";
+            $result=mysqli_query($conn, $query);
+            if(!$result){
+                echo "Insert orders failed " . mysqli_error($conn);
+                exit;
+            }
+        } else{
+            echo "update";
+            $query = "UPDATE cart set quantity='$quantity' where book_isbn_fk='$isbn' and user_id_fk='$userId'";
+            $result=mysqli_query($conn, $query);
+            if(!$result){
+                echo "Insert orders failed " . mysqli_error($conn);
+                exit;
+            }
+        }
+
+
+    }
 ?>
