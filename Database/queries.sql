@@ -1,3 +1,11 @@
+CREATE TABLE IF NOT EXISTS `orders` (
+  `orderid` int(10) unsigned NOT NULL,
+  `customerid` int(10) unsigned NOT NULL,
+  `amount` decimal(6,2) DEFAULT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+
 CREATE TABLE IF NOT EXISTS `user` (
   `user_id_pk` int auto_increment primary key,
   `name` varchar(20) NOT NULL,
@@ -28,3 +36,5 @@ SELECT book_isbn_fk from cart where user_id_fk=1;
 INSERT INTO cart VALUES (3,'978-0-321-94786-4',1);
 
 SELECT `book_title`,`book_price` FROM books inner join cart ON books.book_isbn=cart.book_isbn_fk WHERE user_id_fk=3;
+
+ALTER TABLE `orders` DROP `ship_name`, DROP `ship_address`, DROP `ship_city`, DROP `ship_zip_code`, DROP `ship_country`;

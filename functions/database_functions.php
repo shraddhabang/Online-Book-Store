@@ -33,7 +33,7 @@
 	}
 
 	function getOrderId($conn, $customerid){
-		$query = "SELECT orderid FROM orders WHERE customerid = '$customerid'";
+		$query = "SELECT orderid FROM orders WHERE customerid = '$customerid' ORDER BY orderid DESC";
 		$result = mysqli_query($conn, $query);
 		if(!$result){
 			echo "retrieve data failed!" . mysqli_error($conn);
@@ -43,9 +43,17 @@
 		return $row['orderid'];
 	}
 
-	function insertIntoOrder($conn, $customerid, $total_price, $date, $ship_name, $ship_address, $ship_city, $ship_zip_code, $ship_country){
-		$query = "INSERT INTO orders VALUES 
-		('', '" . $customerid . "', '" . $total_price . "', '" . $date . "', '" . $ship_name . "', '" . $ship_address . "', '" . $ship_city . "', '" . $ship_zip_code . "', '" . $ship_country . "')";
+	function insertIntoOrder($conn, $customerid, $total_price, $date){
+	    $query ="SELECT max(orderid) as orderId from orders";
+        $prevOrder = mysqli_query($conn, $query);
+        if(!$prevOrder){
+            echo "Insert orders failed " . mysqli_error($conn);
+            exit;
+        }
+        $row = mysqli_fetch_assoc($prevOrder);
+        $orderId=$row['orderId']+1;
+
+		$query = "INSERT INTO orders (`orderid`,`customerid`,`amount`,`date`) VALUES(".$orderId.", ". $customerid . ", " . $total_price . ", '" . $date . "')";
 		$result = mysqli_query($conn, $query);
 		if(!$result){
 			echo "Insert orders failed " . mysqli_error($conn);
@@ -141,6 +149,16 @@
         }
     }
 
+    function deleteAllBooksInCart($userId){
+        $conn = db_connect();
+        $query = "DELETE from cart where user_id_fk='$userId'";
+        $result=mysqli_query($conn, $query);
+        if(!$result){
+            echo "Insert orders failed " . mysqli_error($conn);
+            exit;
+        }
+    }
+
     function insertOrUpdateBookQuantityInCart($isbn, $quantity, $userId){
         $conn = db_connect();
         $query="SELECT quantity FROM CART WHERE book_isbn_fk='$isbn' and user_id_fk='$userId'";
@@ -167,7 +185,17 @@
                 exit;
             }
         }
-
-
     }
+
+    function getAllOrdersOfACustomer($userId){
+        $conn = db_connect();
+	    $query="SELECT orders.orderid,orders.date,books.book_title,books.book_price from orders inner join order_items inner join books on orders.orderid=order_items.orderid and order_items.book_isbn=books.book_isbn where orders.customerid=".$userId." ORDER BY orderid";
+        $result=mysqli_query($conn, $query);
+        if(!$result){
+            echo "Insert orders failed " . mysqli_error($conn);
+            exit;
+        }
+        return $result;
+    }
+
 ?>
