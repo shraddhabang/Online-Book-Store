@@ -169,7 +169,6 @@
             exit;
         }
         if($qty['quantity']==null){
-            echo "insert";
             $query = "INSERT into cart (user_id_fk,book_isbn_fk,quantity) values('$userId','$isbn','$quantity') ";
             $result=mysqli_query($conn, $query);
             if(!$result){
@@ -177,7 +176,6 @@
                 exit;
             }
         } else{
-            echo "update";
             $query = "UPDATE cart set quantity='$quantity' where book_isbn_fk='$isbn' and user_id_fk='$userId'";
             $result=mysqli_query($conn, $query);
             if(!$result){

@@ -26,21 +26,29 @@ if(!isset($_SESSION['cart']) && isset($userId))	{
 			unset($_POST);
 		}
 	}
+if(isset($_POST['save_change'])){
+    foreach($_SESSION['cart'] as $isbn =>$qty) {
 
-	// if save change button is clicked , change the qty of each bookisbn
-	if(isset($_POST['save_change'])){
-        foreach($_SESSION['cart'] as $isbn =>$qty){
-            if($_POST[$isbn] == '0'){
-			unset($_SESSION['cart']["$isbn"]);
-				deleteBookFromCart($isbn,$userId);
-			} else {
-				$_SESSION['cart']["$isbn"] = $_POST["$isbn"];
-                insertOrUpdateBookQuantityInCart($isbn,$_SESSION['cart'][$isbn],$userId);
-			}
-		}
-	}
+        if ($_POST[$isbn] == '0') {
+            unset($_SESSION['cart']["$isbn"]);
+            deleteBookFromCart($isbn, $userId);
+        } else{
+            $conn =db_connect();
+            $availQuantity = getBookQuantityFromInventory($conn, $isbn);
+            $book = mysqli_fetch_assoc(getBookByIsbn($conn, $isbn));
+            if ($availQuantity-$_POST[$isbn] < 0) {
+                echo '<div id="errorMsg" style="color:red;">The quantity specified of the book "'.$book['book_title'].'" exceeds the amount we have available </div>';
+            }
+        }
+    }
+    foreach($_SESSION['cart'] as $isbn =>$qty) {
+        $_SESSION['cart']["$isbn"] = $_POST["$isbn"];
+        insertOrUpdateBookQuantityInCart($isbn,$_SESSION['cart'][$isbn],$userId);
+    }
+}
 
 	// print out header here
+
 	$title = "Your shopping cart";
 	require "./template/menu.html";
     if(isset($_SESSION['id'])) {
@@ -48,6 +56,7 @@ if(!isset($_SESSION['cart']) && isset($userId))	{
             $_SESSION['total_price'] = total_price($_SESSION['cart']);
             $_SESSION['total_items'] = total_items($_SESSION['cart']);
             ?>
+
             <h1>My Cart</h1>
             <form action="cart.php" method="post">
                 <table class="table">
@@ -63,7 +72,16 @@ if(!isset($_SESSION['cart']) && isset($userId))	{
                         $book = mysqli_fetch_assoc(getBookByIsbn($conn, $isbn));
                         ?>
                         <tr>
-                            <td><?php echo $book['book_title'] . " by " . $book['book_author']; ?></td>
+                            <td><?php echo $book['book_title'] . " by " . $book['book_author']; ?><br>
+                                <?php
+                                $availQuantity=getBookQuantityFromInventory($conn ,$isbn);
+                                if ($availQuantity == '0') {
+                                    echo '<span style="color:red">The book is Out Of Stock</span>';
+                                } else {
+                                    echo '<span style="color:limegreen"> Only ', $availQuantity, ' book(s) left in stock </span>';
+                                }
+                                ?>
+                            </td>
                             <td><?php echo "$" . $book['book_price']; ?></td>
                             <td><input type="text" value="<?php echo $qty; ?>" size="2" name="<?php echo $isbn; ?>">
                             </td>
@@ -77,7 +95,7 @@ if(!isset($_SESSION['cart']) && isset($userId))	{
                         <th><?php echo "$" . $_SESSION['total_price']; ?></th>
                     </tr>
                 </table>
-                <input type="submit" class="btn btn-primary" name="save_change" value="Save Changes">
+                <input type="submit" class="btn btn-primary" name="save_change" value="Save Changes" onclick="validateQuantityOfProducts();">
             </form>
             <br/><br/>
             <a href="checkout.php" class="btn btn-primary">Go To Checkout</a>
@@ -91,4 +109,8 @@ if(!isset($_SESSION['cart']) && isset($userId))	{
     }
 	if(isset($conn)){ mysqli_close($conn); }
 	//require_once "./template/footer.php";
+
+// if save change button is clicked , change the qty of each bookisbn
+
+
 ?>

@@ -24,11 +24,7 @@
 
         $bookQty = getBookQuantityFromInventory($conn,$isbn);
         $newQty=$bookQty-$qty;
-        if($newQty<0){
-            $newQty=0;
-        }
         updateBookQunatityInInventory($conn,$isbn,$newQty);
-            echo "s";
         if(!$result){
         echo "Insert value false!" . mysqli_error($conn2);
         exit;
