@@ -33,7 +33,7 @@
 	}
 
 	function getOrderId($conn, $customerid){
-		$query = "SELECT orderid FROM orders WHERE customerid = '$customerid' ORDER BY orderid DESC";
+		$query = "SELECT orderid FROM orders WHERE user_id_fk = '$customerid' ORDER BY orderid DESC";
 		$result = mysqli_query($conn, $query);
 		if(!$result){
 			echo "retrieve data failed!" . mysqli_error($conn);
@@ -53,7 +53,7 @@
         $row = mysqli_fetch_assoc($prevOrder);
         $orderId=$row['orderId']+1;
 
-		$query = "INSERT INTO orders (`orderid`,`customerid`,`amount`,`date`) VALUES(".$orderId.", ". $customerid . ", " . $total_price . ", '" . $date . "')";
+		$query = "INSERT INTO orders (`orderid`,`user_id_fk`,`amount`,`date`) VALUES(".$orderId.", ". $customerid . ", " . $total_price . ", '" . $date . "')";
 		$result = mysqli_query($conn, $query);
 		if(!$result){
 			echo "Insert orders failed " . mysqli_error($conn);
@@ -144,7 +144,7 @@
         $query = "DELETE from cart where book_isbn_fk='$isbn' and user_id_fk='$userId'";
         $result=mysqli_query($conn, $query);
         if(!$result){
-            echo "Insert orders failed " . mysqli_error($conn);
+            echo "Delete from cart failed " . mysqli_error($conn);
             exit;
         }
     }
@@ -154,7 +154,7 @@
         $query = "DELETE from cart where user_id_fk='$userId'";
         $result=mysqli_query($conn, $query);
         if(!$result){
-            echo "Insert orders failed " . mysqli_error($conn);
+            echo "Delete All Books In Cart failed " . mysqli_error($conn);
             exit;
         }
     }
@@ -165,7 +165,7 @@
         $result=mysqli_query($conn, $query);
         $qty = mysqli_fetch_assoc($result);
         if(!$result){
-            echo "Insert orders failed " . mysqli_error($conn);
+            echo "Get quantity from cart failed " . mysqli_error($conn);
             exit;
         }
         if($qty['quantity']==null){
@@ -173,7 +173,7 @@
             $query = "INSERT into cart (user_id_fk,book_isbn_fk,quantity) values('$userId','$isbn','$quantity') ";
             $result=mysqli_query($conn, $query);
             if(!$result){
-                echo "Insert orders failed " . mysqli_error($conn);
+                echo "Insert into cart failed " . mysqli_error($conn);
                 exit;
             }
         } else{
@@ -181,7 +181,7 @@
             $query = "UPDATE cart set quantity='$quantity' where book_isbn_fk='$isbn' and user_id_fk='$userId'";
             $result=mysqli_query($conn, $query);
             if(!$result){
-                echo "Insert orders failed " . mysqli_error($conn);
+                echo "Update cart failed " . mysqli_error($conn);
                 exit;
             }
         }
@@ -189,13 +189,44 @@
 
     function getAllOrdersOfACustomer($userId){
         $conn = db_connect();
-	    $query="SELECT orders.orderid,orders.date,books.book_title,books.book_price from orders inner join order_items inner join books on orders.orderid=order_items.orderid and order_items.book_isbn=books.book_isbn where orders.customerid=".$userId." ORDER BY orderid";
+	    $query="SELECT orders.orderid,orders.date,books.book_title,books.book_price from orders inner join order_items inner join books on orders.orderid=order_items.orderid and order_items.book_isbn=books.book_isbn where orders.user_id_fk=".$userId." ORDER BY orderid";
         $result=mysqli_query($conn, $query);
         if(!$result){
-            echo "Insert orders failed " . mysqli_error($conn);
+            echo "Get All Orders Of A Customer " . mysqli_error($conn);
             exit;
         }
         return $result;
     }
 
+    function totalBooksInInventory(){
+        $conn = db_connect();
+        $query="SELECT sum(quantity) as sum from books";
+        $result=mysqli_query($conn, $query);
+        if(!$result){
+            echo "Total Books In Inventory " . mysqli_error($conn);
+            exit;
+        }
+        $value= mysqli_fetch_assoc($result);
+        return $value['sum'];
+    }
+
+    function getBookQuantityFromInventory($conn,$isbn){
+        $query="SELECT quantity from books where book_isbn=".$isbn;
+        $result=mysqli_query($conn, $query);
+        if(!$result){
+            echo "GEt Book Quantity From Inventory " . mysqli_error($conn);
+            exit;
+        }
+        $row= mysqli_fetch_assoc($result);
+        return $row['quantity'];
+    }
+
+    function updateBookQunatityInInventory($conn,$isbn,$quantity){
+        $query="UPDATE books set quantity=".$quantity." where book_isbn='".$isbn."'";
+        $result=mysqli_query($conn, $query);
+        if(!$result){
+            echo "Update Book Quantity In Inventory Failed   " . mysqli_error($conn);
+            exit;
+        }
+    }
 ?>

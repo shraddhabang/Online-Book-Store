@@ -1,11 +1,3 @@
-CREATE TABLE IF NOT EXISTS `orders` (
-  `orderid` int(10) unsigned NOT NULL,
-  `customerid` int(10) unsigned NOT NULL,
-  `amount` decimal(6,2) DEFAULT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
-
-
 CREATE TABLE IF NOT EXISTS `user` (
   `user_id_pk` int auto_increment primary key,
   `name` varchar(20) NOT NULL,
@@ -14,8 +6,28 @@ CREATE TABLE IF NOT EXISTS `user` (
   `phone` varchar(10),
   `city` varchar(40),
   `zip` varchar(10),
-  `role` varchar(20) NOT NULL
+  `role` varchar(20) NOT NULL,
+  PRIMARY KEY(user_id_pk)
 );
+
+CREATE TABLE IF NOT EXISTS `orders` (
+  `orderid_pk` int(10) unsigned NOT NULL,
+  `user_id_fk` int NOT NULL,
+  `amount` decimal(6,2) DEFAULT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id_fk) REFERENCES `user`(`user_id_pk`),
+  PRIMARY KEY (orderid_pk)
+);
+
+CREATE TABLE IF NOT EXISTS `order_items` (
+  `orderid_fk` int(10) unsigned NOT NULL,
+  `book_isbn` varchar(20) COLLATE latin1_general_ci NOT NULL,
+  `item_price` decimal(6,2) NOT NULL,
+  `quantity` tinyint(3) unsigned NOT NULL,
+  FOREIGN KEY (orderid_fk) REFERENCES `orders`(`orderid_pk`),
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+
 
 
 CREATE TABLE IF NOT EXISTS `cart` (
@@ -25,6 +37,18 @@ CREATE TABLE IF NOT EXISTS `cart` (
     FOREIGN KEY (user_id_fk) REFERENCES `user`(`user_id_pk`),
     FOREIGN KEY (book_isbn_fk) REFERENCES `books`(`book_isbn`)
 );
+
+CREATE TABLE IF NOT EXISTS `books` (
+  `book_isbn` varchar(20) COLLATE latin1_general_ci NOT NULL,
+  `book_title` varchar(60) COLLATE latin1_general_ci DEFAULT NULL,
+  `book_author` varchar(60) COLLATE latin1_general_ci DEFAULT NULL,
+  `book_image` varchar(40) COLLATE latin1_general_ci DEFAULT NULL,
+  `book_descr` text COLLATE latin1_general_ci,
+  `book_price` decimal(6,2) NOT NULL,
+  `publisherid` int(10) unsigned NOT NULL,
+  `quantity` int DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
 
 -- CREATE users
 INSERT INTO `user` (`name`, `password`, `email`, `phone`, `city`, `zip`, `role`) VALUES ('admin', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'admin@admin.com', '4692234198', 'Dallas', '75252', 'admin');
@@ -38,3 +62,5 @@ INSERT INTO cart VALUES (3,'978-0-321-94786-4',1);
 SELECT `book_title`,`book_price` FROM books inner join cart ON books.book_isbn=cart.book_isbn_fk WHERE user_id_fk=3;
 
 ALTER TABLE `orders` DROP `ship_name`, DROP `ship_address`, DROP `ship_city`, DROP `ship_zip_code`, DROP `ship_country`;
+
+ALTER TABLE  books ADD quantity int(10) unsigned DEFAULT 0;

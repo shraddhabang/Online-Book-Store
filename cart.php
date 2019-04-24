@@ -11,7 +11,7 @@
     if(isset( $_SESSION['id'])){
         $userId = $_SESSION['id'];
     }
-if(!isset($_SESSION['cart']))	{
+if(!isset($_SESSION['cart']) && isset($userId))	{
     $_SESSION['cart'] = array();
     $cart = loadCart($userId);
     foreach ($cart as $row) {
