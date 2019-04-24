@@ -20,6 +20,7 @@
 
   $title = $row['book_title'];
   require "./template/menu.html";
+  $availQuantity = getBookQuantityFromInventory($conn,$book_isbn);
 ?>
     <section>
       <p class="lead"><a href="listofbooks.php">Books</a> > <?php echo $row['book_title']; ?></p>
@@ -60,9 +61,20 @@
               if(isset($conn)) {mysqli_close($conn); }
             ?>
           </table>
+
+              <?php
+              if($availQuantity=='0'){
+                  echo '<span style="color:red">The book is Out Of Stock';
+              } else {
+                  echo '<span style="color:limegreen"> Only ', $availQuantity,' book(s) left in stock </span>';
+              }
+              ?>
+
+
           <form method="post" action="cart.php">
+              <br>
             <input type="hidden" name="bookisbn" value="<?php echo $book_isbn;?>">
-            <input type="submit" value="Purchase / Add to cart" name="cart" class="btn btn-primary">
+            <input type="submit" value="Purchase / Add to cart" name="cart" class="btn btn-primary" <?php if ($availQuantity == 0){ ?> disabled <?php   } ?>>
           </form>
        	</div>
       </div>

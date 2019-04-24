@@ -211,10 +211,10 @@
     }
 
     function getBookQuantityFromInventory($conn,$isbn){
-        $query="SELECT quantity from books where book_isbn=".$isbn;
+        $query="SELECT quantity from books where book_isbn='".$isbn."'";
         $result=mysqli_query($conn, $query);
         if(!$result){
-            echo "GEt Book Quantity From Inventory " . mysqli_error($conn);
+            echo "Get Book Quantity From Inventory " . mysqli_error($conn);
             exit;
         }
         $row= mysqli_fetch_assoc($result);

@@ -6,7 +6,6 @@
 	// book_isbn got from form post method, change this place later.
 	if(isset($_POST['bookisbn'])){
 		$book_isbn = $_POST['bookisbn'];
-        echo $book_isbn;
     }
     if(isset( $_SESSION['id'])){
         $userId = $_SESSION['id'];
