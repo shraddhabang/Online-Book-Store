@@ -64,7 +64,7 @@
 
               <?php
               if($availQuantity=='0'){
-                  echo '<span style="color:red">The book is Out Of Stock';
+                  echo '<span style="color:red">This Book is Out Of Stock';
               } else {
                   echo '<span style="color:limegreen"> Only ', $availQuantity,' book(s) left in stock </span>';
               }

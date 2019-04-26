@@ -46,6 +46,14 @@ if(isset($_POST['save_change'])){
         insertOrUpdateBookQuantityInCart($isbn,$_SESSION['cart'][$isbn],$userId);
     }
 }
+if (isset($_GET['deleteBook']) && isset( $_SESSION['id']))
+{
+    $userId = $_SESSION['id'];
+    $isbn=$_GET['deleteBook'];
+    deleteBookFromCart($isbn, $userId);
+    unset($_SESSION['cart'][$isbn]);
+}
+
 
 	// print out header here
 
@@ -65,6 +73,7 @@ if(isset($_POST['save_change'])){
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Total</th>
+                        <th>&nbsp;</th>
                     </tr>
                     <?php
                     foreach ($_SESSION['cart'] as $isbn => $qty) {
@@ -86,6 +95,10 @@ if(isset($_POST['save_change'])){
                             <td><input type="text" value="<?php echo $qty; ?>" size="2" name="<?php echo $isbn; ?>">
                             </td>
                             <td><?php echo "$" . $qty * $book['book_price']; ?></td>
+                            <td><a href="?deleteBook=<?php echo $isbn?>">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                </a>
+                            </td>
                         </tr>
                     <?php } ?>
                     <tr>
@@ -93,6 +106,7 @@ if(isset($_POST['save_change'])){
                         <th>&nbsp;</th>
                         <th><?php echo $_SESSION['total_items']; ?></th>
                         <th><?php echo "$" . $_SESSION['total_price']; ?></th>
+                        <th>&nbsp;</th>
                     </tr>
                 </table>
                 <input type="submit" class="btn btn-primary" name="save_change" value="Save Changes" onclick="validateQuantityOfProducts();">
