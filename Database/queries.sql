@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 );
 
 CREATE TABLE IF NOT EXISTS `orders` (
-  `orderid_pk` int(10) unsigned NOT NULL,
+  `orderid` int(10) unsigned NOT NULL,
   `user_id_fk` int NOT NULL,
   `amount` decimal(6,2) DEFAULT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -20,11 +20,11 @@ CREATE TABLE IF NOT EXISTS `orders` (
 );
 
 CREATE TABLE IF NOT EXISTS `order_items` (
-  `orderid_fk` int(10) unsigned NOT NULL,
+  `orderid` int(10) unsigned NOT NULL,
   `book_isbn` varchar(20) COLLATE latin1_general_ci NOT NULL,
   `item_price` decimal(6,2) NOT NULL,
   `quantity` tinyint(3) unsigned NOT NULL,
-  FOREIGN KEY (orderid_fk) REFERENCES `orders`(`orderid_pk`),
+  FOREIGN KEY (orderid) REFERENCES `orders`(`orderid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 

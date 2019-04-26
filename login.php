@@ -178,18 +178,24 @@
             data: $('#loginForm').serialize(),
             datatype: 'json',
             success   : function(response) {
-                            var data = JSON.parse(response);
-                            if (!data.success) { //If fails
-                                if (data.errors.name) { //Returned if any error from process.php
-                                    $('#throw_error').css("visibility","visible");
-                                    $('#throw_error').fadeIn(1000).html(data.errors.name); //Throw relevant error
-                                    $('#pass').val = "";
+                                var data = JSON.parse(response);
+                                if (!data.success) { //If fails
+                                    if (data.errors.name) { //Returned if any error from process.php
+                                        $('#throw_error').css("visibility","visible");
+                                        $('#throw_error').fadeIn(1000).html(data.errors.name); //Throw relevant error
+                                        $('#pass').val = "";
+                                    }
                                 }
-                            }
-                            else {
-                                    window.open("index.php","_self");
+                                else {
+                                    if(!data.admin){
+                                        window.open("index.php","_self");
+                                    }
+                                    else{
+                                        window.open("admin_book.php","_self");
+                                    }
+                                        
                                 } 
-                            //alert(response);
+
                             },
             error : function(){
                 alert("Error");

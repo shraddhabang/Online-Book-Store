@@ -128,8 +128,16 @@
             ?>
             <li><a href="logout.php">Logout<span>End your session</span></a></li>
             <?php
+                if(!isset($_SESSION["admin"])){
+            ?>
+            <li><a href="admin_book.php">Administration<span>You are an admin</span></a></li>
+            <?php
                 }
             ?>
+            <?php
+                }
+            ?>
+            
         </ul> <!-- end home-sidelinks -->
 
         <ul class="home-social">

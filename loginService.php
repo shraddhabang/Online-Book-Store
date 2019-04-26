@@ -20,11 +20,12 @@
         if(!$conn){
             $errors['name'] = "Error in connecting DB";   
             $response['errors']  = $errors;
+            $response['admin'] = false;
             echo json_encode($response);
             exit();  
         }            
         
-        $query = "SELECT user_id_pk,password FROM user WHERE email = '$email'";
+        $query = "SELECT user_id_pk,password,role FROM user WHERE email = '$email'";
     
         $result = mysqli_query($conn, $query);
         $userData = mysqli_fetch_assoc($result);
@@ -32,6 +33,7 @@
             $errors['name'] = 'User is not registered';
             $response['success'] = false;
             $response['errors']  = $errors;
+            $response['admin'] = false;
             echo json_encode($response);
             exit();
         }else{
@@ -44,9 +46,17 @@
                 $errors['name'] = 'Password is incorrect';
                 $response['success'] = false;
                 $response['errors']  = $errors;
+                $response['admin'] = false;
                 echo json_encode($response);
                 exit();
             }
+            if($userData["role"] == "admin"){
+                $_SESSION["admin"]=true;
+                $response['admin'] = true;
+            }else{
+                $_SESSION["admin"]=false;
+                $response['admin'] = false;
+            }            
             $_SESSION["email"] =$email;
             $_SESSION["id"]=$userData['user_id_pk'];
             $response['success'] = true;
