@@ -64,3 +64,23 @@ SELECT `book_title`,`book_price` FROM books inner join cart ON books.book_isbn=c
 ALTER TABLE `orders` DROP `ship_name`, DROP `ship_address`, DROP `ship_city`, DROP `ship_zip_code`, DROP `ship_country`;
 
 ALTER TABLE  books ADD quantity int(10) unsigned DEFAULT 0;
+
+ALTER TABLE  books ADD category varchar(30);
+
+UPDATE books
+SET category = "Academic & Professional";
+
+//List of Categories
+// Academic & Professional
+// Literature & Fiction
+// History
+// Science Fiction & Fantasy
+
+
+
+
+//Admin Add edit flow
+//Added book quantity
+//Adding category
+//Adding publishers
+//
