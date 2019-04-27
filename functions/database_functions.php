@@ -208,7 +208,21 @@
         return $value['sum'];
     }
 
-    function getBookQuantityFromInventory($conn,$isbn){
+function totalQuantityInInventory($table){
+    $conn = db_connect();
+    $query="SELECT count(*) as count from ".$table;
+    $result=mysqli_query($conn, $query);
+    if(!$result){
+        echo "Total Books In Inventory " . mysqli_error($conn);
+        exit;
+    }
+    $value= mysqli_fetch_assoc($result);
+    return $value['count'];
+}
+
+
+
+function getBookQuantityFromInventory($conn,$isbn){
         $query="SELECT quantity from books where book_isbn='".$isbn."'";
         $result=mysqli_query($conn, $query);
         if(!$result){
