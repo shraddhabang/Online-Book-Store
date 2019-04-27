@@ -8,13 +8,12 @@
   $title = "Full Catalogs of Books";
   require_once "./template/menu.html";
 
-if (isset($_GET['search'])) {
-    if($_GET['searchBox']!=""){
+    if(isset($_GET['searchBox']) && $_GET['searchBox']!=""){
         $query .= " where (book_title LIKE '%" . $_GET['searchBox'] . "%' OR book_author LIKE '%" . $_GET['searchBox'] . "%') ";
     }
 
     if($_GET['category']!="All"){
-        if($_GET['searchBox']==""){
+        if((isset($_GET['searchBox']) && $_GET['searchBox']=="") || !isset($_GET['searchBox'])){
             $query .= " where category_id_fk=".$_GET['category'];
         } else {
             $query .= " and category_id_fk=".$_GET['category'];
@@ -22,15 +21,12 @@ if (isset($_GET['search'])) {
     }
 
     if(isset($_GET['publisher']) && $_GET['publisher']!='All'){
-        if($_GET['searchBox']=="" && $_GET['category']=="All"){
+        if(isset($_GET['searchBox']) && isset($_GET['publisher']) && $_GET['searchBox']=="" && $_GET['category']=="All"){
             $query .= " where publisherid=".$_GET['publisher'];
         } else {
             $query .= " AND publisherid=".$_GET['publisher'];
         }
     }
-}
-
-echo $query;
 $result = mysqli_query($conn, $query);
 if (!$result) {
     echo "Can't retrieve data " . mysqli_error($conn);
@@ -59,7 +55,7 @@ $resultForPublisher = mysqli_query($conn, $queryForPublisher);
                         <option value="All">All Categories</option>
                         <?php while($category = mysqli_fetch_assoc($resultForCategory)){ ?>
                         <option value="<?php echo $category["category_id_pk"]?>" <?php
-                                if (isset($_GET['search']) && $_GET['category']==$category["category_id_pk"]) {
+                                if ($_GET['category']==$category["category_id_pk"]) {
                                     echo 'selected="selected"';
                                 }
                         ?>>
@@ -74,7 +70,7 @@ $resultForPublisher = mysqli_query($conn, $queryForPublisher);
                     <option value="All">All Publishers</option>
                     <?php while($publisher = mysqli_fetch_assoc($resultForPublisher)){ ?>
                         <option value="<?php echo $publisher["publisherid"]?>"   <?php
-                        if (isset($_GET['search']) && $_GET['publisher']==$publisher["publisherid"]) {
+                        if ($_GET['publisher']==$publisher["publisherid"]) {
                             echo 'selected="selected"';
                         }
                         ?>>
@@ -87,7 +83,9 @@ $resultForPublisher = mysqli_query($conn, $queryForPublisher);
             <div class="border col-md-3"> <input type="submit" name="search" value="Search"> </div>
         </div>
 </form>
-<?php for($i = 0; $i < mysqli_num_rows($result); $i++){ ?>
+<?php
+
+for($i = 0; $i < mysqli_num_rows($result); $i++){ ?>
       <div class="row">
         <?php while($query_row = mysqli_fetch_assoc($result)){ ?>
           <div class="col-md-3">
@@ -105,6 +103,17 @@ $resultForPublisher = mysqli_query($conn, $queryForPublisher);
       </div>
 <?php
       }
+
+if(mysqli_num_rows($result)==0){ ?>
+    <div class="row">
+    <div class="col-md-3" style="color:red">
+<?php
+    echo "No books found for this search criteria.";
+    ?>
+    </div>
+    </div>
+        <?php
+}
   if(isset($conn)) { mysqli_close($conn); }
 //  require_once "./template/footer.php";
 ?>

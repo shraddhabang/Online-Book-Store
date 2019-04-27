@@ -32,7 +32,10 @@
 </head>
 
 <body id="top">
-
+<?php
+  require_once "./functions/database_functions.php";
+$conn = db_connect()
+  ?>
     <!-- header
     ================================================== -->
     <header class="s-header">
@@ -174,6 +177,11 @@
             </div>
         </div> <!-- end section-header -->
 
+
+            <?php
+            $queryForCategory="SELECT * from category";
+            $resultForCategory = mysqli_query($conn, $queryForCategory);
+            ?>
         <div class="row">
                 
             <div class="about-process process block-1-2 block-tab-full">
@@ -181,38 +189,19 @@
                 <div class="process__vline-left"></div>
                 <div class="process__vline-right"></div>
 
-                <div class="col-block process__col" data-item="1" data-aos="fade-up">
-                    <div class="process__text">
-                      <a href="bestsellers.php">
-                        <img class="rotate" src="./bootstrap/images/icons/book.svg" alt="Generic placeholder image" height="100px" width="100px">
-                      </a>
-                      <h3>Bestsellers</h3>
+                <?php while($category = mysqli_fetch_assoc($resultForCategory)){ ?>
+                    <div class="col-block process__col" data-item="1" data-aos="fade-up">
+                        <div class="process__text">
+                            <a href="./listofbooks.php?category=<?php echo $category['category_id_pk'] ?>">
+                                <img class="rotate" src="./bootstrap/images/icons/<?php echo $category['images']?>" alt="Generic placeholder image" height="100px" width="100px">
+                            </a>
+                            <h3><?php echo $category['name']?></h3>
+                        </div>
                     </div>
-                </div>
-                <div class="col-block process__col" data-item="2" data-aos="fade-up">
-                    <div class="process__text">
-                      <a href="academic.php">
-                        <img  class="rotate" src="./bootstrap/images/icons/laptop.svg" alt="Generic placeholder image" height="100px" width="100px">
-                      </a>
-                      <h3>Academic &amp; Professional</h3>
-                    </div>
-                </div>
-                <div class="col-block process__col" data-item="3" data-aos="fade-up">
-                    <div class="process__text">
-                        <a href="literature.php">
-                          <img  class="rotate" src="./bootstrap/images/icons/letter.svg" alt="Generic placeholder image" height="100px" width="100px">
-                        </a>
-                        <h3>Literature &amp; Fiction</h3>
-                    </div>
-                </div>
-                <div class="col-block process__col" data-item="4" data-aos="fade-up">
-                    <div class="process__text">
-                        <a href="literature.php">
-                          <img  class="rotate" src="./bootstrap/images/icons/letter.svg" alt="Generic placeholder image" height="100px" width="100px">
-                        </a>
-                        <h3>Literature &amp; Fiction</h3>
-                    </div>
-                </div>
+                <?php }?>
+
+
+
 
             </div> <!-- end process -->
 

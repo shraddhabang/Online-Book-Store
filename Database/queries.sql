@@ -71,10 +71,18 @@ ALTER TABLE  books ADD category varchar(30);
 UPDATE books
 SET category = "Academic & Professional";
 
-INSERT INTO `category`(`name`) VALUES('Academic & Professional');
-INSERT INTO `category`(`name`) VALUES('Literature & Fiction');
-INSERT INTO `category`(`name`) VALUES('History');
-INSERT INTO `category`(`name`) VALUES('Science Fiction & Fantasy');
+CREATE Table category(
+  `category_id_pk` int auto_increment primary key,
+  `name` varchar(100) NOT NULL,
+  `images` varchar(100)  NOT NULL,
+)
+
+
+INSERT INTO `category`( `name`, `images`) VALUES ('Academic & Professional','book.svg');
+INSERT INTO `category`( `name`, `images`) VALUES ('Literature & Fiction','laptop.svg');
+INSERT INTO `category`( `name`, `images`) VALUES ('History','letter.svg');
+INSERT INTO `category`( `name`, `images`) VALUES ('Science Fiction & Fantasy','letter.svg');
+
 
 
 
