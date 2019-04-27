@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `books` (
   `book_price` decimal(6,2) NOT NULL,
   `publisherid` int(10) unsigned NOT NULL,
   `quantity` int DEFAULT 0,
-  ' category' varchar(30),
+  `category` varchar(30),
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 
@@ -70,6 +70,14 @@ ALTER TABLE  books ADD category varchar(30);
 
 UPDATE books
 SET category = "Academic & Professional";
+
+INSERT INTO `category`(`name`) VALUES('Academic & Professional');
+INSERT INTO `category`(`name`) VALUES('Literature & Fiction');
+INSERT INTO `category`(`name`) VALUES('History');
+INSERT INTO `category`(`name`) VALUES('Science Fiction & Fantasy');
+
+
+
 
 //List of Categories
 // Academic & Professional

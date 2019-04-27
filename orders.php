@@ -10,7 +10,7 @@ require_once "functions/database_functions.php";
 
         if ($result!=null) {
             ?>
-            <h1>My Cart</h1>
+            <h1>My Orders</h1>
                 <table class="table">
                     <tr>
                         <th>Order Id</th>
