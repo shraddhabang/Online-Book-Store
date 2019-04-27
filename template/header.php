@@ -377,7 +377,7 @@ $conn = db_connect()
 
                     <div class="testimonials__slide">
                         <img src="./bootstrap/images/avatars/user-01.jpg" alt="Author image" class="testimonials__avatar">
-                        <p>Qui ipsam temporibus quisquam velMaiores eos cumque distinctio nam accusantium ipsum. 
+                        <p>Qui ipsam temporibus quisquam velMaiores eos cumque distinctio nam accusantium ipsum.
                         Laudantium quia consequatur molestias delectus culpa facere hic dolores aperiam. Accusantium quos qui praesentium corpori.</p>
                         <div class="testimonials__author">
                             Tim Cook
@@ -416,18 +416,27 @@ $conn = db_connect()
 
     <!-- stats
     ================================================== -->
-    <?php
-    require_once "./functions/database_functions.php";
-    ?>
     <section id="stats" class="s-stats">
 
         <div class="row stats block-1-4 block-m-1-2 block-mob-full" data-aos="fade-up">
-                
+
             <div class="col-block stats__col ">
                 <div class="stats__count"><?php echo totalBooksInInventory()?></div>
                 <h5>Total Books</h5>
             </div>
 
+            <div class="col-block stats__col ">
+                <div class="stats__count"><?php echo totalQuantityInInventory("publisher")?></div>
+                <h5>Publishers</h5>
+            </div>
+            <div class="col-block stats__col ">
+                <div class="stats__count"><?php echo totalQuantityInInventory("category")?></div>
+                <h5>Categories</h5>
+            </div>
+            <div class="col-block stats__col ">
+                <div class="stats__count"><?php echo totalQuantityInInventory("user")?></div>
+                <h5>Happy Clients</h5>
+            </div>
 
         </div> <!-- end stats -->
 
