@@ -46,7 +46,8 @@ CREATE TABLE IF NOT EXISTS `books` (
   `book_descr` text COLLATE latin1_general_ci,
   `book_price` decimal(6,2) NOT NULL,
   `publisherid` int(10) unsigned NOT NULL,
-  `quantity` int DEFAULT 0
+  `quantity` int DEFAULT 0,
+  ' category' varchar(30),
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 
