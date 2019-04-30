@@ -12,7 +12,7 @@
         $query .= " where (book_title LIKE '%" . $_GET['searchBox'] . "%' OR book_author LIKE '%" . $_GET['searchBox'] . "%') ";
     }
 
-    if($_GET['category']!="All"){
+    if(isset($_GET['category']) && $_GET['category']!="All"){
         if((isset($_GET['searchBox']) && $_GET['searchBox']=="") || !isset($_GET['searchBox'])){
             $query .= " where category_id_fk=".$_GET['category'];
         } else {
@@ -55,7 +55,7 @@ $resultForPublisher = mysqli_query($conn, $queryForPublisher);
                         <option value="All">All Categories</option>
                         <?php while($category = mysqli_fetch_assoc($resultForCategory)){ ?>
                         <option value="<?php echo $category["category_id_pk"]?>" <?php
-                                if ($_GET['category']==$category["category_id_pk"]) {
+                                if (isset($_GET['category']) && $_GET['category']==$category["category_id_pk"]) {
                                     echo 'selected="selected"';
                                 }
                         ?>>
@@ -70,7 +70,7 @@ $resultForPublisher = mysqli_query($conn, $queryForPublisher);
                     <option value="All">All Publishers</option>
                     <?php while($publisher = mysqli_fetch_assoc($resultForPublisher)){ ?>
                         <option value="<?php echo $publisher["publisherid"]?>"   <?php
-                        if ($_GET['publisher']==$publisher["publisherid"]) {
+                        if (isset($_GET['publisher']) && $_GET['publisher']==$publisher["publisherid"]) {
                             echo 'selected="selected"';
                         }
                         ?>>
