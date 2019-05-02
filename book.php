@@ -50,8 +50,31 @@
                 case "book_price":
                   $key = "Price";
                   break;
+                case "category_id_fk":
+                  $key = "Category";
+                  break;
+                case "quantity":
+                $key = "Quantity";
+                break;
+              }
+              if($key == "Category"){
+                switch($value){
+                  case 1:
+                    $value = "Academic & Professional";
+                    break;
+                  case 2:
+                    $value = "Literature & Fiction";
+                    break;
+                  case 3:
+                    $value = "History";
+                    break;
+                  case 4:
+                    $value = "Science Fiction & Fantasy";
+                    break;
+                }
               }
             ?>
+            
             <tr>
               <td><?php echo $key; ?></td>
               <td><?php echo $value; ?></td>
