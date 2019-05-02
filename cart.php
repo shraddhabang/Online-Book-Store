@@ -116,7 +116,7 @@ if (isset($_GET['deleteBook']) && isset( $_SESSION['id']))
             <a href="listofbooks.php" class="btn btn-primary">Continue Shopping</a>
             <?php
         } else {
-            echo "<p class=\"text-warning\">Your cart is empty! Please make sure you add some books in it!</p>";
+            echo "<p class=\"text-warning\"><span style=\"color:red\">Your cart is empty! Please make sure you add some books in it!</span></p>";
         }
     } else {
        header('Location:login.php');

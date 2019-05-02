@@ -7,8 +7,9 @@ require_once "functions/database_functions.php";
         $result = getAllOrdersOfACustomer($_SESSION['id']);
        // echo mysqli_num_rows($result);
         //$orders = mysqli_fetch_assoc($result);
-
         if ($result!=null) {
+            $rows = mysqli_num_rows($result);
+            if($rows>0){
             ?>
             <h1>My Orders</h1>
                 <table class="table">
@@ -31,6 +32,9 @@ require_once "functions/database_functions.php";
                 </table>
        <?php
         } else {
+               echo"<span style='color:red'>You have not ordered any book yet!</span>";
+            }
+        }else {
             echo "<p class=\"text-warning\">Your cart is empty! Please make sure you add some books in it!</p>";
         }
     } else {
