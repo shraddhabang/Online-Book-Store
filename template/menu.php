@@ -22,8 +22,8 @@
 
     <!-- favicons
     ================================================== -->
-    <link rel="shortcut icon" href="bootstrap/favicon.ico" type="../bootstrap/image/x-icon">
-    <link rel="icon" href="bootstrap/favicon.ico" type="../bootstrap/image/x-icon">
+    <link rel="shortcut icon" href="bootstrap/books_icon.ico" type="../bootstrap/image/x-icon">
+    <link rel="icon" href="bootstrap/books_icon.ico" type="../bootstrap/image/x-icon">
 
 
 </head>

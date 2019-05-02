@@ -26,7 +26,7 @@
       <p class="lead"><a href="listofbooks.php">Books</a> > <?php echo $row['book_title']; ?></p>
       <div class="row">
           <div class="col-md-3 text-center">
-          <img class="img-responsive img-thumbnail" src="bootstrap/images/<?php echo $row['book_image']; ?>">
+          <img class="img-responsive img-thumbnail"  style = "width:200px; height:250px;" src="bootstrap/images/<?php echo trim($row['book_image']); ?>">
         </div>
           <div class="col-md-6">
           <h4>Book Description</h4>

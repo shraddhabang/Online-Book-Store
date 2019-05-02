@@ -32,7 +32,7 @@
           $query .= " AND publisherid=".$_GET['publisher'];
       }
   }
-
+  
   $result = mysqli_query($conn, $query);
   if(!$result){
     echo "Can't retrieve data " . mysqli_error($conn);
@@ -40,7 +40,8 @@
   }
   //echo $result;
   $rows = mysqli_num_rows($result);
-  // //This is the number of results displayed per page 
+  if($rows>0){
+    // //This is the number of results displayed per page 
   $page_rows = 12;
   //This tells us the page number of our last page 
   $last = ceil($rows/$page_rows);
@@ -57,6 +58,8 @@
     echo "Can't retrieve data " . mysqli_error($conn);
     exit;
   }
+  }
+  
 
   $queryForCategory="SELECT * from category";
   $resultForCategory = mysqli_query($conn, $queryForCategory);
@@ -138,7 +141,7 @@ if(mysqli_num_rows($result)==0){ ?>
     </div>
     </div>
   <?php
-  }?>
+  }else if(mysqli_num_rows($result)!=0){?>
   <style><?php include 'bootstrap/css/pagination.css'; ?></style>
     <?php
       echo "<p style='margin-top: 30px; margin-left: 500px; '>";
@@ -191,4 +194,5 @@ if(mysqli_num_rows($result)==0){ ?>
         echo " <a href='{$_SERVER['PHP_SELF']}?$request". "pagenum=$last'>Last ->></a> ";
       }
       echo "</div>";
+    }
     ?>

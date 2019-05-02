@@ -26,8 +26,8 @@
 
     <!-- favicons
     ================================================== -->
-    <link rel="shortcut icon" href="./bootstrap/favicon.ico" type="./bootstrap/image/x-icon">
-    <link rel="icon" href="./bootstrap/favicon.ico" type="./bootstrap/image/x-icon">
+    <link rel="shortcut icon" href="./bootstrap/books_icon.ico" type="./bootstrap/image/x-icon">
+    <link rel="icon" href="./bootstrap/books_icon.ico" type="./bootstrap/image/x-icon">
 
 </head>
 
@@ -118,7 +118,7 @@ $conn = db_connect()
             ?>
             <li><a href="logout.php">Logout<span>End your session</span></a></li>
             <?php
-                if(isset($_SESSION["admin"])){
+                if(isset($_SESSION["admin"]) && $_SESSION["admin"] == true){
             ?>
             <li><a href="admin_book.php">Administration<span>You are an admin</span></a></li>
             <?php

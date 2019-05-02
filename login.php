@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-	<title>Online Book Store</title>
+	<title>Pick-A-Book</title>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">	
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -155,15 +155,12 @@
     </style>
 </head>
 <body>
-<header class="s-header">
-
-    <div class="header-logo">
+<div class="container">
+    <div class="row">
         <a class="site-logo" href="./">
-            <img src="./bootstrap/images/new_logo.jpg" alt="Homepage">
+            <img style="    width: 200px; height: 100px; margin-top: 20px;" src="./bootstrap/images/new_logo.jpg" alt="Homepage">
         </a>
     </div>
-</header>
-<div class="container">
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card card-signin my-5">

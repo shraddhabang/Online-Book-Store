@@ -13,8 +13,6 @@
 			<th>ISBN</th>
 			<th>Title</th>
 			<th>Author</th>
-			<th>Image</th>
-			<th>Description</th>
 			<th>Price</th>
 			<th>Publisher</th>
 			<th>&nbsp;</th>
