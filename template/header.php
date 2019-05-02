@@ -52,7 +52,7 @@ $conn = db_connect()
 
             <div class="header-nav__content">
                 <h3>Pick-A-Book</h3>
-                
+
                 <ul class="header-nav__list">
                     <li class="current"><a href="./index.php" title="Home">Home</a></li>
                     <li><a  href="./listofbooks.php" title="List of Books">Books</a></li>
@@ -90,7 +90,15 @@ $conn = db_connect()
 
             <div class="row home-content__main">
                 <h1>
-                Hello folks, <br>
+                Hello <?php
+                    if(!isset($_SESSION)) {
+                        session_start();
+                    }
+                    if(isset($_SESSION["name"])){
+                        echo $_SESSION["name"];
+                    }else {
+                    ?>folks,
+                    <?php } ?> <br>
                 Wanna read.
                 </h1>
 

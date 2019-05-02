@@ -25,7 +25,7 @@
             exit();  
         }            
         
-        $query = "SELECT user_id_pk,password,role FROM user WHERE email = '$email'";
+        $query = "SELECT name,user_id_pk,password,role FROM user WHERE email = '$email'";
     
         $result = mysqli_query($conn, $query);
         $userData = mysqli_fetch_assoc($result);
@@ -59,6 +59,7 @@
             }            
             $_SESSION["email"] =$email;
             $_SESSION["id"]=$userData['user_id_pk'];
+            $_SESSION["name"]=$userData['name'];
             $response['success'] = true;
             echo json_encode($response);
             
