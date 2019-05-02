@@ -5,7 +5,7 @@
   require_once "./functions/database_functions.php";
   $conn = db_connect();
 
-  $query = "SELECT * FROM books WHERE book_isbn = '$book_isbn'";
+  $query = "SELECT * FROM books left join publisher on books.publisherid=publisher.publisherid WHERE book_isbn = '$book_isbn'";
   $result = mysqli_query($conn, $query);
   if(!$result){
     echo "Can't retrieve data " . mysqli_error($conn);
@@ -54,8 +54,11 @@
                   $key = "Category";
                   break;
                 case "quantity":
-                $key = "Quantity";
-                break;
+                    $key = "Quantity";
+                    break;
+                case "publisher_name":
+                      $key = "Publisher";
+                      break;
               }
               if($key == "Category"){
                 switch($value){
