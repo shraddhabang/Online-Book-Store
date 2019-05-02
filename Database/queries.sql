@@ -40,14 +40,14 @@ CREATE TABLE IF NOT EXISTS `cart` (
 
 CREATE TABLE IF NOT EXISTS `books` (
   `book_isbn` varchar(20) COLLATE latin1_general_ci NOT NULL,
-  `book_title` varchar(60) COLLATE latin1_general_ci DEFAULT NULL,
+  `book_title` varchar(200) COLLATE latin1_general_ci DEFAULT NULL,
   `book_author` varchar(60) COLLATE latin1_general_ci DEFAULT NULL,
   `book_image` varchar(40) COLLATE latin1_general_ci DEFAULT NULL,
   `book_descr` text COLLATE latin1_general_ci,
   `book_price` decimal(6,2) NOT NULL,
   `publisherid` int(10) unsigned NOT NULL,
   `quantity` int DEFAULT 0,
-  `category` varchar(30),
+  `category_id_fk` varchar(30),
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 

@@ -26,7 +26,7 @@
   }
 
   if(isset($_GET['publisher']) && $_GET['publisher']!='All'){
-      if(isset($_GET['searchBox']) && isset($_GET['publisher']) && $_GET['searchBox']=="" && $_GET['category']=="All"){
+    if((isset($_GET['searchBox']) && isset($_GET['publisher']) && $_GET['searchBox']=="" && $_GET['category']=="All")||!isset($_GET['searchBox']) ){
           $query .= " where publisherid=".$_GET['publisher'];
       } else {
           $query .= " AND publisherid=".$_GET['publisher'];
@@ -41,7 +41,7 @@
   //echo $result;
   $rows = mysqli_num_rows($result);
   // //This is the number of results displayed per page 
-  $page_rows = 2;
+  $page_rows = 12;
   //This tells us the page number of our last page 
   $last = ceil($rows/$page_rows);
   if ($pagenum < 1){
@@ -115,7 +115,7 @@ for($i = 0; $i < mysqli_num_rows($result); $i++){ ?>
         <?php while($query_row = mysqli_fetch_assoc($result)){ ?>
           <div class="col-md-3">
             <a href="book.php?bookisbn=<?php echo $query_row['book_isbn']; ?>">
-              <img class="img-responsive img-thumbnail" src="bootstrap/images/<?php echo $query_row['book_image']; ?>">
+              <img class="img-responsive img-thumbnail" style = "width:200px; height:250px;" src="bootstrap/images/<?php echo trim($query_row['book_image']); ?>">
             </a>
           </div>
         <?php
@@ -141,10 +141,10 @@ if(mysqli_num_rows($result)==0){ ?>
   }?>
   <style><?php include 'bootstrap/css/pagination.css'; ?></style>
     <?php
-      echo "<p style='text-align: center;'>";
+      echo "<p style='margin-top: 30px; margin-left: 500px; '>";
       // This shows the user what page they are on, and the total number of pages
       echo " --Page $pagenum of $last-- <p>";
-      echo "<div style='text-align: center;'>";
+      echo "<div style='margin-top: 30px; margin-left: 400px; margin-bottom:30px;'>";
       $request = "";
       if(isset($_GET['searchBox']) && $_GET['searchBox']!=""){
         $request .= "searchBox=".$_GET['searchBox'];
