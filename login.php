@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-	<link rel="stylesheet" type="text/css" href="bootstrap/css/login.css">
     <script src="bootstrap/js/jquery-3.2.1.min.js"></script>
     <style>
                 :root {
@@ -17,7 +16,14 @@
 
         body {
         background: green;
-        background: linear-gradient(to right,#e9ecef, #dee2e6);
+        background-image: url(bootstrap/images/background.jfif);
+         /* Full height */
+        height: 100%; 
+
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
         }
 
         .card-signin {
@@ -123,9 +129,6 @@
     </style>
 </head>
 <body>
-<?php
-    require_once "navbar.html";
-?>
 <div class="container">
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">

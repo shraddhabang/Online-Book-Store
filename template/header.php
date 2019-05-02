@@ -75,7 +75,7 @@ $conn = db_connect()
 
     <!-- home
     ================================================== -->
-    <section id="home" class="s-home target-section" data-parallax="scroll" data-image-src="./bootstrap/images/hero-bg.jpg" data-natural-width=3000 data-natural-height=2000 data-position-y=top>
+    <section id="home" class="s-home target-section" data-parallax="scroll" data-image-src="./bootstrap/images/background.jfif" data-natural-width=3000 data-natural-height=2000 data-position-y=top>
 
         <div class="shadow-overlay"></div>
 
@@ -122,27 +122,7 @@ $conn = db_connect()
             ?>
             
         </ul> <!-- end home-sidelinks -->
-
-        <ul class="home-social">
-            <li class="home-social-title">Follow Us</li>
-            <li><a href="#0">
-                <i class="fab fa-facebook"></i>
-                <span class="home-social-text">Facebook</span>
-            </a></li>
-            <li><a href="#0">
-                <i class="fab fa-twitter"></i>
-                <span class="home-social-text">Twitter</span>
-            </a></li>
-            <li><a href="#0">
-                <i class="fab fa-linkedin"></i>
-                <span class="home-social-text">LinkedIn</span>
-            </a></li>
-        </ul> <!-- end home-social -->
-
-        <a href="#about" class="home-scroll smoothscroll">
-            <span class="home-scroll__text">Scroll Down</span>
-            <span class="home-scroll__icon"></span>
-        </a> <!-- end home-scroll -->
+        
 
     </section> <!-- end s-home -->
 
@@ -293,66 +273,33 @@ $conn = db_connect()
 
 </section>
 
-
-<!-- works
+<!-- stats
 ================================================== -->
-    <section id='works' class="s-works">
+<section id="stats" class="s-stats">
 
-        <div class="row section-header" data-aos="fade-up">
-            <div class="col-full">
-                <h1 class="display-1">Latest Books</h1>
-                <h3 class="subhead">These are some of our recent additions and we are so excited to show them to you.</h3>
-            </div>
-        </div> <!-- end section-header -->
-        <?php
-            $conn = db_connect();
-            $row = select6LatestBooks($conn);
-        ?>
+    <div class="row stats block-1-4 block-m-1-2 block-mob-full" data-aos="fade-up">
 
-        <div class="row masonry-wrap">
-            <div class="masonry">
-                <?php
-                foreach($row as $book) { ?>
-                    <div class="masonry__brick" data-aos="fade-up">
-                        <a href="book.php?bookisbn=<?php echo $book['book_isbn']; ?>" class="thumb-link" title="<?php echo $book['book_title']; ?>" data-size="1050x700">
-                            <img style = "width:200px; height:250px;" src="./bootstrap/images/<?php echo trim($book['book_image']); ?>"
-                                    >
-                        </a>
-                    </div> <!-- end masonry__brick -->
-                <?php } ?>
-            </div>
+        <div class="col-block stats__col ">
+            <div class="stats__count"><?php echo totalBooksInInventory()?></div>
+            <h5>Total Books</h5>
         </div>
 
-    </section> <!-- end s-works -->
+        <div class="col-block stats__col ">
+            <div class="stats__count"><?php echo totalQuantityInInventory("publisher")?></div>
+            <h5>Publishers</h5>
+        </div>
+        <div class="col-block stats__col ">
+            <div class="stats__count"><?php echo totalQuantityInInventory("category")?></div>
+            <h5>Categories</h5>
+        </div>
+        <div class="col-block stats__col ">
+            <div class="stats__count"><?php echo totalQuantityInInventory("user")?></div>
+            <h5>Happy Clients</h5>
+        </div>
 
+    </div> <!-- end stats -->
 
-    <!-- stats
-    ================================================== -->
-    <section id="stats" class="s-stats">
-
-        <div class="row stats block-1-4 block-m-1-2 block-mob-full" data-aos="fade-up">
-
-            <div class="col-block stats__col ">
-                <div class="stats__count"><?php echo totalBooksInInventory()?></div>
-                <h5>Total Books</h5>
-            </div>
-
-            <div class="col-block stats__col ">
-                <div class="stats__count"><?php echo totalQuantityInInventory("publisher")?></div>
-                <h5>Publishers</h5>
-            </div>
-            <div class="col-block stats__col ">
-                <div class="stats__count"><?php echo totalQuantityInInventory("category")?></div>
-                <h5>Categories</h5>
-            </div>
-            <div class="col-block stats__col ">
-                <div class="stats__count"><?php echo totalQuantityInInventory("user")?></div>
-                <h5>Happy Clients</h5>
-            </div>
-
-        </div> <!-- end stats -->
-
-    </section> <!-- end s-stats -->
+</section> <!-- end s-stats -->
 
 
     <!-- contact
@@ -361,8 +308,8 @@ $conn = db_connect()
 
         <div class="row section-header" data-aos="fade-up">
             <div class="col-full">
-                <h3 class="subhead subhead--light">Contact Us</h3>
-                <h1 class="display-1 display-1--light">Get in touch and let's make something great together. Let's turn your idea on an even greater product.</h1>
+            <h1 class="display-1 display-1--light">Contact Us</h1>
+            <h3 class="subhead subhead--light">Get in touch and let's make something great together. Let's turn your idea on an even greater product.</h3>
             </div>
         </div> <!-- end section-header -->
 
@@ -370,7 +317,7 @@ $conn = db_connect()
 
             <div class="col-full contact-main" data-aos="fade-up">
                 <p>
-                <a href="mailto:#0" class="contact-email">hello@transcend-studio.com</a>
+                <a href="mailto:#0" class="contact-email">help@bookstore.com</a>
                 <span class="contact-number">+1 (917) 123 456  /  +1 (917) 333 987</span>
                 </p>
             </div> <!-- end contact-main -->
@@ -383,51 +330,13 @@ $conn = db_connect()
                 <h3 class="subhead subhead--light">Where To Find Us</h3>
 
                 <p class="contact-address">
-                    1600 Amphitheatre Parkway<br>
-                    Mountain View, CA<br>
-                    94043 US
+                    800 Waterview Parkway<br>
+                    Dallas, TX<br>
+                    45252 US
                 </p>
             </div> <!-- end contact-secondary -->
 
-            <div class="col-five tab-full contact-secondary" data-aos="fade-up">
-                <h3 class="subhead subhead--light">Follow Us</h3>
-
-                <ul class="contact-social">
-                    <li>
-                        <a href="#0"><i class="fab fa-facebook"></i></a>
-                    </li>
-                    <li>
-                        <a href="#0"><i class="fab fa-twitter"></i></a>
-                    </li>
-                    <li>
-                        <a href="#0"><i class="fab fa-instagram"></i></a>
-                    </li>
-                    <li>
-                        <a href="#0"><i class="fab fa-behance"></i></a>
-                    </li>
-                    <li>
-                        <a href="#0"><i class="fab fa-dribbble"></i></a>
-                    </li>
-                </ul> <!-- end contact-social -->
-
-                <div class="contact-subscribe">
-                    <form id="mc-form" class="group mc-form" novalidate="true">
-                        <input type="email" value="" name="EMAIL" class="email" id="mc-email" placeholder="Email Address" required="">
-                        <input type="submit" name="subscribe" value="Subscribe">
-                        <label for="mc-email" class="subscribe-message"></label>
-                    </form>
-                </div> <!-- end contact-subscribe -->
-            </div> <!-- end contact-secondary -->
-
         </div> <!-- end row -->
-
-        <div class="row">
-            <div class="col-full cl-copyright">
-                <span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span> 
-            </div>
-        </div>
 
         <div class="cl-go-top">
             <a class="smoothscroll" title="Back to Top" href="#top"><i class="icon-arrow-up" aria-hidden="true"></i></a>
