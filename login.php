@@ -126,6 +126,32 @@
         color: white;
         background-color: #3b5998;
         }
+
+        .header-logo {
+            z-index: 501;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            left: 110px;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+        .header-logo a {
+            display: block;
+            padding: 0;
+            outline: 0;
+            border: none;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+        .header-logo img {
+            width: 200px;
+            height: 100px;
+        }
+
     </style>
 </head>
 <body>
@@ -133,7 +159,7 @@
 
     <div class="header-logo">
         <a class="site-logo" href="./">
-            <img src="./bootstrap/images/new_logo.jpg" alt="Homepage" style="width: 200px;height: 100px">
+            <img src="./bootstrap/images/new_logo.jpg" alt="Homepage">
         </a>
     </div>
 </header>
