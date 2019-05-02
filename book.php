@@ -19,7 +19,7 @@
   }
 
   $title = $row['book_title'];
-  require "./template/menu.html";
+  require "./template/menu.php";
   $availQuantity = getBookQuantityFromInventory($conn,$book_isbn);
 ?>
     <section>

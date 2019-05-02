@@ -3,7 +3,7 @@
 	require_once "./functions/admin_functions.php";
 	require "./functions/database_functions.php";
 	$conn = db_connect();
-	require "./template/menu.html";
+	require "./template/menu.php";
 
 	if(isset($_POST['add'])){
 		$isbn = trim($_POST['isbn']);

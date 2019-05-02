@@ -11,7 +11,7 @@
   $conn = db_connect();
   $query = "SELECT book_isbn, book_image FROM books";
   $title = "Full Catalogs of Books";
-  require_once "./template/menu.html";
+  require_once "./template/menu.php";
 
   if(isset($_GET['searchBox']) && $_GET['searchBox']!=""){
       $query .= " where (book_title LIKE '%" . $_GET['searchBox'] . "%' OR book_author LIKE '%" . $_GET['searchBox'] . "%') ";

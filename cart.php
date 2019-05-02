@@ -58,7 +58,7 @@ if (isset($_GET['deleteBook']) && isset( $_SESSION['id']))
 	// print out header here
 
 	$title = "Your shopping cart";
-	require "./template/menu.html";
+	require "./template/menu.php";
     if(isset($_SESSION['id'])) {
         if (isset($_SESSION['cart']) && (array_count_values($_SESSION['cart']))) {
             $_SESSION['total_price'] = total_price($_SESSION['cart']);

@@ -51,7 +51,7 @@ $conn = db_connect()
             <a href="#0" class="header-nav__close" title="close"><span>Close</span></a>
 
             <div class="header-nav__content">
-                <h3>Transcend Studio</h3>
+                <h3>Pick-A-Book</h3>
                 
                 <ul class="header-nav__list">
                     <li class="current"><a href="./index.php" title="Home">Home</a></li>
@@ -59,7 +59,14 @@ $conn = db_connect()
                     <li><a  href="./cart.php" title="Shopping Cart">My Cart</a></li>
                     <li><a  href="./orders.php" title="Orders">My Orders</a></li>
                     <li><a  href="./index.php#contact" title="Contact Us">Contact Us</a></li>
+                    <?php
+                    if(!isset($_SESSION)) {
+                        session_start();
+                    }
+                    if(isset($_SESSION["id"])){
+                    ?>
                     <li><a href="./logout.php" title="Logout">Logout</a></li>
+                    <?php }?>
                 </ul>    
 
             </div> <!-- end header-nav__content -->
@@ -83,13 +90,13 @@ $conn = db_connect()
 
             <div class="row home-content__main">
                 <h1>
-                Hello folks, we are <br>
-                Transcend Studio.
+                Hello folks, <br>
+                Wanna read.
                 </h1>
 
                 <p>
-                We create stunning digital experiences <br>
-                that will help your business stand out.
+                A plethora of books is<br>
+                waiting for you.
                 </p>
             </div> <!-- end home-content__main -->
 

@@ -2,7 +2,7 @@
 session_start();
 $title = "Your Orders";
 require_once "functions/database_functions.php";
-	require "./template/menu.html";
+	require "./template/menu.php";
     if(isset($_SESSION['id'])) {
         $result = getAllOrdersOfACustomer($_SESSION['id']);
        // echo mysqli_num_rows($result);

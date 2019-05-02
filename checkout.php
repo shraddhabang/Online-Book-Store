@@ -4,7 +4,7 @@
 	require_once "./functions/database_functions.php";
 	// print out header here
 	$title = "Checking out";
-	require "./template/menu.html";
+	require "./template/menu.php";
     $userId=$_SESSION['id'];
     $conn = db_connect();
 

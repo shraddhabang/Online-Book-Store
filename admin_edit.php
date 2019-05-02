@@ -3,7 +3,7 @@
 	require_once "./functions/admin_functions.php";
 	require_once "./functions/database_functions.php";
 	$conn = db_connect();
-	require "./template/menu.html";
+	require "./template/menu.php";
 
 	if(isset($_GET['bookisbn'])){
 		$book_isbn = $_GET['bookisbn'];

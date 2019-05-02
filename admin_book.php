@@ -4,7 +4,7 @@
 	require_once "./functions/database_functions.php";
 	$conn = db_connect();
 	$result = getAll($conn);
-	require "./template/menu.html";
+	require "./template/menu.php";
 ?>
 	<p class="lead"><a href="admin_add.php">Add new book</a></p>
 	<a href="admin_signout.php" class="btn btn-primary">Log out!</a>
