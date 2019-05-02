@@ -11,6 +11,8 @@
 	$descr = trim($_POST['descr']);
 	$price = floatval(trim($_POST['price']));
 	$publisher = trim($_POST['publisher']);
+	$category = trim($_POST['category']);
+	$quantity = trim($_POST['quantity']);
 
 	if(isset($_FILES['image']) && $_FILES['image']['name'] != ""){
 		$image = $_FILES['image']['name'];
@@ -26,14 +28,17 @@
 	// if publisher is not in db, create new
 	$findPub = "SELECT * FROM publisher WHERE publisher_name = '$publisher'";
 	$findResult = mysqli_query($conn, $findPub);
-	if(!$findResult){
+	$row = mysqli_fetch_assoc($findResult);
+	if($row['publisherid']==null){
 		// insert into publisher table and return id
 		$insertPub = "INSERT INTO publisher(publisher_name) VALUES ('$publisher')";
 		$insertResult = mysqli_query($conn, $insertPub);
-		if(!$insertResult){
-			echo "Can't add new publisher " . mysqli_error($conn);
-			exit;
-		}
+		$select = "Select * from publisher where publisher_name = '$publisher'";
+		$findResult = mysqli_query($conn, $findPub);
+		$row = mysqli_fetch_assoc($findResult);
+		$publisherid = $row['publisherid'];
+	}else {
+		$publisherid = $row['publisherid'];
 	}
 
 
@@ -41,7 +46,10 @@
 	book_title = '$title', 
 	book_author = '$author', 
 	book_descr = '$descr', 
-	book_price = '$price'";
+	book_price = '$price',
+	publisherid = '$publisherid',
+	quantity = '$quantity',
+	category_id_fk = '$category'";
 	if(isset($image)){
 		$query .= ", book_image='$image' WHERE book_isbn = '$isbn'";
 	} else {

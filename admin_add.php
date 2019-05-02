@@ -24,6 +24,12 @@
 		$publisher = trim($_POST['publisher']);
 		$publisher = mysqli_real_escape_string($conn, $publisher);
 
+		$category = trim($_POST['category']);
+		$category = mysqli_real_escape_string($conn, $category);
+
+		$quantity = trim($_POST['quantity']);
+		$quantity = mysqli_real_escape_string($conn, $quantity);
+
 		// add image
 		if(isset($_FILES['image']) && $_FILES['image']['name'] != ""){
 			$image = $_FILES['image']['name'];
@@ -37,22 +43,19 @@
 		// if publisher is not in db, create new
 		$findPub = "SELECT * FROM publisher WHERE publisher_name = '$publisher'";
 		$findResult = mysqli_query($conn, $findPub);
-		if(!$findResult){
+		$row = mysqli_fetch_assoc($findResult);
+		if($row['publisherid']==null){
 			// insert into publisher table and return id
 			$insertPub = "INSERT INTO publisher(publisher_name) VALUES ('$publisher')";
 			$insertResult = mysqli_query($conn, $insertPub);
-			if(!$insertResult){
-				echo "Can't add new publisher " . mysqli_error($conn);
-				exit;
-			}
-			$publisherid = mysql_insert_id($conn);
-		} else {
+			$select = "Select * from publisher where publisher_name = '$publisher'";
+			$findResult = mysqli_query($conn, $findPub);
 			$row = mysqli_fetch_assoc($findResult);
 			$publisherid = $row['publisherid'];
+		} else {
+			$publisherid = $row['publisherid'];
 		}
-
-
-		$query = "INSERT INTO books VALUES ('" . $isbn . "', '" . $title . "', '" . $author . "', '" . $image . "', '" . $descr . "', '" . $price . "', '" . $publisherid . "')";
+		$query = "INSERT INTO books VALUES ('" . $isbn . "', '" . $title . "', '" . $author . "', '" . $image . "', '" . $descr . "', '" . $price . "', '" . $publisherid . "','" . $quantity . "','" . $category . "')";
 		$result = mysqli_query($conn, $query);
 		if(!$result){
 			echo "Can't add new data " . mysqli_error($conn);
@@ -61,6 +64,8 @@
 			header("Location: admin_book.php");
 		}
 	}
+	$queryForCategory="SELECT * from category";
+	$resultForCategory = mysqli_query($conn, $queryForCategory);
 ?>
 	<form method="post" action="admin_add.php" enctype="multipart/form-data">
 		<table class="table">
@@ -89,8 +94,25 @@
 				<td><input type="text" name="price" required></td>
 			</tr>
 			<tr>
-				<th>Publisher</th>
-				<td><input type="text" name="publisher" required></td>
+				<th>Category</th>
+				<td>
+					<select  name="category">
+							<?php $count =0; while($category = mysqli_fetch_assoc($resultForCategory)){ $count=$count+1; ?>
+							<option value="<?php echo $category["category_id_pk"]?>">
+							<?php echo $category["name"]?>
+							</option>
+							<?php }?>
+					</select>
+				</td>
+			</tr>
+			<tr>
+			<th>Publisher</th>
+			<td><input type="text" name="publisher" required></td>
+			</tr>
+
+			<tr>
+			<th>Quantity</th>
+			<td><input type="text" name="quantity" required></td>
 			</tr>
 		</table>
 		<input type="submit" name="add" value="Add new book" class="btn btn-primary">

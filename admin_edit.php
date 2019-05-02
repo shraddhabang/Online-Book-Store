@@ -25,6 +25,8 @@
 		exit;
 	}
 	$row = mysqli_fetch_assoc($result);
+	$queryForCategory="SELECT * from category";
+  	$resultForCategory = mysqli_query($conn, $queryForCategory);
 ?>
 	<form method="post" action="edit_book.php" enctype="multipart/form-data">
 		<table class="table">
@@ -55,6 +57,27 @@
 			<tr>
 				<th>Publisher</th>
 				<td><input type="text" name="publisher" value="<?php echo getPubName($conn, $row['publisherid']); ?>" required></td>
+			</tr>
+			<tr>
+				<th>Category</th>
+				<td>
+					<select  name="category">
+							<?php $count =0; while($category = mysqli_fetch_assoc($resultForCategory)){ $count=$count+1; ?>
+							<option value="<?php echo $category["category_id_pk"]?>" <?php
+							if ($row['category_id_fk']==$category["category_id_pk"]) {
+								echo 'selected="selected"';
+							}
+							?>>
+							<?php echo $category["name"]?>
+							</option>
+							<?php }?>
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+			<th>Quantity</th>
+			<td><input type="text" name="quantity" value="<?php echo $row['quantity']; ?>" ></td>
 			</tr>
 		</table>
 		<input type="submit" name="save_change" value="Change" class="btn btn-primary">
