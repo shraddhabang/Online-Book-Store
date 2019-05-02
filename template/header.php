@@ -42,7 +42,7 @@ $conn = db_connect()
 
         <div class="header-logo">
             <a class="site-logo" href="./">
-                <img src="./bootstrap/images/logo.svg" alt="Homepage">
+                <img src="./bootstrap/images/new_logo.jpg" alt="Homepage">
             </a>
         </div> <!-- end header-logo -->
 

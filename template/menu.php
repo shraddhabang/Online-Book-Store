@@ -36,7 +36,7 @@
 
     <div class="header-logo">
         <a class="site-logo" href="./">
-            <img src="bootstrap/images/logo.svg" alt="Homepage">
+            <img src="bootstrap/images/new_logo_white.png" alt="Homepage" style="height:100px">
         </a>
     </div> <!-- end header-logo -->
 

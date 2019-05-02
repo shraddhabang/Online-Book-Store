@@ -129,6 +129,14 @@
     </style>
 </head>
 <body>
+<header class="s-header">
+
+    <div class="header-logo">
+        <a class="site-logo" href="./">
+            <img src="./bootstrap/images/new_logo.jpg" alt="Homepage" style="width: 200px;height: 100px">
+        </a>
+    </div>
+</header>
 <div class="container">
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
