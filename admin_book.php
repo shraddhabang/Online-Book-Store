@@ -7,7 +7,6 @@
 	require "./template/menu.php";
 ?>
 	<p class="lead"><a href="admin_add.php">Add new book</a></p>
-	<a href="admin_signout.php" class="btn btn-primary">Log out!</a>
 	<table class="table" style="margin-top: 20px">
 		<tr>
 			<th>ISBN</th>
